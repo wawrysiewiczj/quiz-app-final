@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { Radio, RadioGroup } from "@headlessui/react";
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
 
 const QuizPage = () => {
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ const QuizPage = () => {
         }
         if (res.ok && data.questions.length > 0) {
           setQuiz(data);
-          setSelectedAnswers(new Array(data.questions.length).fill(-1));
+          setSelectedAnswers(new Array(data.questions.length).fill(null));
           setLoading(false);
           setError(false);
         }
@@ -35,6 +37,7 @@ const QuizPage = () => {
         setLoading(false);
       }
     };
+
     fetchQuiz();
   }, [quizSlug]);
 
@@ -42,9 +45,9 @@ const QuizPage = () => {
     setQuizStarted(true);
   };
 
-  const handleAnswerSelect = (questionIndex, answerIndex) => {
+  const handleAnswerSelect = (selectedValue) => {
     const newSelectedAnswers = [...selectedAnswers];
-    newSelectedAnswers[questionIndex] = answerIndex;
+    newSelectedAnswers[currentQuestionIndex] = selectedValue;
     setSelectedAnswers(newSelectedAnswers);
   };
 
@@ -181,30 +184,32 @@ const QuizPage = () => {
           </p>
         </div>
       </div>
-      <h2>{currentQuestion.content}</h2>
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
-        {currentQuestion.answers.map((answer, aIndex) => (
-          <li key={aIndex}>
-            <input
-              id={`answer-${aIndex}`}
-              type="radio"
-              name={`question-${currentQuestionIndex}`}
+      <h2 className="text-2xl font-semibold">{currentQuestion.content}</h2>
+      <div className="mx-auto w-full max-w-md mt-4">
+        <RadioGroup
+          className="space-y-2"
+          value={selectedAnswers[currentQuestionIndex]}
+          onChange={handleAnswerSelect}
+        >
+          {currentQuestion.answers.map((answer, aIndex) => (
+            <Radio
+              key={aIndex}
               value={aIndex}
-              className="hidden peer"
-              checked={selectedAnswers[currentQuestionIndex] === aIndex}
-              onChange={() => handleAnswerSelect(currentQuestionIndex, aIndex)}
-            />
-            <label
-              htmlFor={`answer-${aIndex}`}
-              className="animate duration-200 cursor-pointer w-100 flex text-md font-semibold  bg-gray-100 dark:bg-gray-900 px-3.5 py-2.5 rounded-xl shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 peer-checked:ring-1 peer-checked:ring-violet-600 peer-checked:border-transparent"
-              role="radio"
-              tabIndex="0"
+              className="group relative flex cursor-pointer rounded-lg bg-white/5 py-4 px-5 text-white shadow-md transition focus:outline-none"
             >
-              {answer.content}
-            </label>
-          </li>
-        ))}
-      </ul>
+              {({ checked }) => (
+                <div className="flex w-full items-center justify-between">
+                  <p className="">{answer.content}</p>
+                  {checked && (
+                    <CheckCircleIcon className="w-6 h-6 fill-white opacity-100" />
+                  )}
+                </div>
+              )}
+            </Radio>
+          ))}
+        </RadioGroup>
+      </div>
+
       <div className="flex gap-2 mt-4">
         {currentQuestionIndex < quiz.questions.length - 1 ? (
           <button

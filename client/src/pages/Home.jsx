@@ -11,6 +11,9 @@ import {
 import Animation from "../components/Animation";
 import QuizList from "../components/QuizList";
 import CategoryList from "../components/CategoryList";
+import { Field, Fieldset, Input, Label, Select } from "@headlessui/react";
+import clsx from "clsx";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -35,7 +38,27 @@ const Home = () => {
   return (
     <Animation>
       <div className="flex flex-col gap-2">
-        <div className="mb-4">
+        <div className="w-full ">
+          <Fieldset>
+            <Field>
+              <div className="relative">
+                <Input
+                  required
+                  placeholder="Search"
+                  className={clsx(
+                    "block w-full rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                  )}
+                />
+                <MagnifyingGlassIcon
+                  className="group pointer-events-none absolute top-3.5 right-2.5 size-4"
+                  aria-hidden="true"
+                />
+              </div>
+            </Field>
+          </Fieldset>
+        </div>
+        <div className="mb-2">
           <h2 className="text-2xl font-semibold tracking-tight">
             Hello, {currentUser.username}
           </h2>
@@ -46,27 +69,7 @@ const Home = () => {
             improve your skills day by day.
           </p>
         </div>
-        <form className="max-w-3xl mx-auto w-full flex gap-2 mb-4">
-          <label
-            htmlFor="name"
-            className="sr-only block text-gray-700 text-sm font-bold"
-          >
-            Search
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
-          />
 
-          <button className="flex justify-center items-center bg-violet-600 text-white px-3.5 py-2.5 rounded-xl shadow hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <MagnifyingGlassIcon className="w-5 h-5 inline" />
-          </button>
-        </form>
         {/* <div className="grid grid-col-4 gap-2">
           <Link
             to="/profile"
@@ -100,7 +103,7 @@ const Home = () => {
             </div>
             <div className="flex justify-center items-center">
               <span>
-                <ChevronRightIcon className="size-6" />
+                <ChevronRightIcon className="size-4" />
               </span>
             </div>
           </Link>
@@ -116,7 +119,7 @@ const Home = () => {
             </div>
             <div className="flex justify-center items-center">
               <span>
-                <ChevronRightIcon className="size-6" />
+                <ChevronRightIcon className="size-4" />
               </span>
             </div>
           </Link>

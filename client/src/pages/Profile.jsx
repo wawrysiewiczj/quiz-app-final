@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "../redux/user/userSlice";
 import { toast } from "react-toastify";
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+
 import {
   AcademicCapIcon,
   ArrowRightOnRectangleIcon,
@@ -14,20 +16,6 @@ import Animation from "../components/Animation";
 import EditProfile from "../components/EditProfile";
 import Settings from "../components/Settings";
 import ViewAllCompletedQuizzes from "../components/ViewAllCompletedQuizzes";
-
-// ProgressBar component
-const ProgressBar = ({ score }) => {
-  return (
-    <div className="relative pt-1">
-      <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-violet-200 dark:bg-gray-600">
-        <div
-          style={{ width: `${score}%` }}
-          className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-violet-500 dark:bg-green-500"
-        ></div>
-      </div>
-    </div>
-  );
-};
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -81,7 +69,7 @@ const Profile = () => {
     <Animation>
       <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
         {/* Profile Info */}
-        <div className="col-span-4 rounded-xl p-3 text-gray-800 bg-gray-100 dark:text-gray-200 dark:bg-gray-900 bg-opacity-0 flex flex-col gap-2">
+        <div className="col-span-4 rounded-xl p-3 bg-gray-100 dark:bg-gray-900 bg-opacity-0 flex flex-col gap-2">
           <div className="flex flex-col gap-2 items-center justify-center mt-4">
             <img
               className="w-24 h-24 rounded-full object-cover shadow-sm"
@@ -104,27 +92,75 @@ const Profile = () => {
         </div>
 
         {/* Quiz Statistics */}
-        <div className="col-span-4 flex flex-col gap-2 mt-4">
-          <h3 className="font-bold text-md text-gray-600 dark:text-gray-300">
-            Stats
-          </h3>
-          <div className="grid grid-cols-3 gap-2 text-center">
-            <div>
-              <h4 className="text-2xl font-bold text-violet-500">
-                {totalQuizzesTaken}
-              </h4>
-              <p className="text-sm">Quizzes Taken</p>
-            </div>
-            <div>
-              <h4 className="text-2xl font-bold text-violet-500">
-                {averageScore.toFixed(0)}%
-              </h4>
-              <p className="text-sm">Average Score</p>
-            </div>
-            <div>
-              <h4 className="text-2xl font-bold text-violet-500">0</h4>
-              <p className="text-sm">Quizzes Created</p>
-            </div>
+        <div className="col-span-4 flex flex-col gap-2">
+          <div className="w-full max-w-md">
+            <TabGroup>
+              <TabList className="rounded-xl flex w-full justify-between gap-4 p-1 bg-gray-100 dark:bg-gray-900">
+                <Tab
+                  key="stats"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none data-[selected]:bg-bg-gray-100 data-[selected]:dark:bg-gray-700 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                >
+                  Stats
+                </Tab>
+                <Tab
+                  key="badges"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none data-[selected]:bg-bg-gray-100 data-[selected]:dark:bg-gray-700 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                >
+                  Badges
+                </Tab>
+                <Tab
+                  key="achivements"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none data-[selected]:bg-bg-gray-100 data-[selected]:dark:bg-gray-700 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                >
+                  Achivements
+                </Tab>
+              </TabList>
+              <TabPanels className="mt-2">
+                <TabPanel
+                  key="stats"
+                  className="rounded-xl bg-gray-100 dark:bg-gray-900 p-3"
+                >
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div>
+                      <h4 className="text-2xl font-bold text-violet-500">
+                        {totalQuizzesTaken}
+                      </h4>
+                      <p className="text-sm">Quizzes Taken</p>
+                    </div>
+                    <div>
+                      <h4 className="text-2xl font-bold text-violet-500">
+                        {averageScore.toFixed(0)}%
+                      </h4>
+                      <p className="text-sm">Average Score</p>
+                    </div>
+                    <div>
+                      <h4 className="text-2xl font-bold text-violet-500">0</h4>
+                      <p className="text-sm">Quizzes Created</p>
+                    </div>
+                  </div>
+                </TabPanel>
+                <TabPanel
+                  key="badges"
+                  className="rounded-xl bg-gray-100 dark:bg-gray-900 p-3"
+                >
+                  <ul className="flex gap-2" aria-hidden="true">
+                    <li>20.07.2023</li>
+                    <li>32 comments</li>
+                    <li>3 shares</li>
+                  </ul>
+                </TabPanel>
+                <TabPanel
+                  key="achivements"
+                  className="rounded-xl bg-gray-100 dark:bg-gray-900 p-3"
+                >
+                  <ul className="flex gap-2" aria-hidden="true">
+                    <li>20.07.2023</li>
+                    <li>32 comments</li>
+                    <li>3 shares</li>
+                  </ul>
+                </TabPanel>
+              </TabPanels>
+            </TabGroup>
           </div>
         </div>
 
@@ -148,26 +184,28 @@ const Profile = () => {
                   className="animate duration-300 col-span-4 border border-1 border-gray-300 dark:border-gray-700 rounded-xl shadow-sm px-3.5 py-2.5"
                 >
                   <li className="flex justify-between items-center">
-                    <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">
-                      <span className="rounded-xl bg-violet-300 dark:bg-violet-800 p-3 bg-opacity-70">
-                        <AcademicCapIcon className="h-6 w-6" />
-                      </span>
-                    </div>
-                    <div className="text-center">
-                      <h3 className="text-md font-semibold leading-6">
-                        {quizResult.quizId.title}
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {quizResult.quizId.categoryId.name}
-                      </p>
+                    <div className="flex items-center gap-2">
+                      <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">
+                        <span className="rounded-xl bg-violet-300 dark:bg-violet-800 p-3 bg-opacity-70">
+                          <AcademicCapIcon className="h-6 w-6" />
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <h3 className="text-md font-semibold leading-6">
+                          {quizResult.quizId.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {quizResult.quizId.categoryId.name}
+                        </p>
+                      </div>
                     </div>
 
                     <div
-                      className={`p-3 rounded-full w-12 h-12 flex justify-center items-center ring ${getClassForScore(
+                      className={`p-3 rounded-full size-10 flex justify-center items-center ring ${getClassForScore(
                         quizResult.score
                       )}`}
                     >
-                      <span className="text-sm">{quizResult.score}%</span>
+                      <span className="text-xs">{quizResult.score}%</span>
                     </div>
                   </li>
                 </Link>
@@ -192,19 +230,21 @@ const Profile = () => {
                 className="animate duration-300 col-span-4 border border-1 border-gray-300 dark:border-gray-700 rounded-xl shadow-sm px-3.5 py-2.5"
               >
                 <li className="flex justify-between items-center">
-                  <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">
-                    <span className="rounded-xl bg-violet-300 dark:bg-violet-800 p-3 bg-opacity-70">
-                      <AcademicCapIcon className="h-6 w-6" />
-                    </span>
+                  <div className="flex items-center gap-2">
+                    <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">
+                      <span className="rounded-xl bg-violet-300 dark:bg-violet-800 p-3 bg-opacity-70">
+                        <AcademicCapIcon className="h-6 w-6" />
+                      </span>
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-md font-semibold leading-6">Title</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        category
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <h3 className="text-md font-bold leading-6">title</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      category
-                    </p>
-                  </div>
-                  <button className="flex justify-center items-center bg-red-500 text-white px-3.5 py-2.5 rounded-xl shadow hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    <TrashIcon className="w-5 h-5 inline" />
+                  <button className="flex justify-center items-center text-red-500 px-3.5 py-2.5 rounded-xl hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <TrashIcon className="size-4 inline" />
                   </button>
                 </li>
               </Link>

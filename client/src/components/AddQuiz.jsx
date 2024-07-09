@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {
+  Description,
+  Field,
+  Label,
+  Select,
+  Input,
+  Textarea,
+} from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
 
 const AddQuiz = () => {
   const navigate = useNavigate();
@@ -11,7 +21,7 @@ const AddQuiz = () => {
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [questions, setQuestions] = useState([
-    { content: "", answers: ["", "", "", ""], correctAnswerIndex: 0 },
+    { content: "", answers: ["", "", "", ""], correctAnswerIndex: [] },
   ]);
   const [categories, setCategories] = useState([]);
 
@@ -34,13 +44,19 @@ const AddQuiz = () => {
 
   const handleQuestionChange = (index, field, value) => {
     const newQuestions = [...questions];
+
     if (field === "content") {
       newQuestions[index].content = value;
-    } else if (field === "correctAnswerIndex") {
-      newQuestions[index].correctAnswerIndex = Number(value);
+    } else if (field === "correctAnswer") {
+      // Update correct answer index based on the selected value
+      const correctAnswerIndex = newQuestions[index].answers.findIndex(
+        (answer) => answer === value
+      );
+      newQuestions[index].correctAnswerIndex = correctAnswerIndex;
     } else {
       newQuestions[index].answers[Number(field)] = value;
     }
+
     setQuestions(newQuestions);
   };
 
@@ -52,6 +68,7 @@ const AddQuiz = () => {
       ]);
       setCurrentStep(questions.length + 1); // Move to the next step after adding a question
     } else {
+      console.log("Maximum 10 questions allowed.");
     }
   };
 
@@ -104,48 +121,71 @@ const AddQuiz = () => {
       <form onSubmit={handleSubmit}>
         {currentStep === 1 && (
           <div>
-            <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
-                Title
-              </label>
-              <input
-                type="text"
-                placeholder="Title"
-                className="w-full flex-1 bg-white dark:bg-gray-900  border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
+            <div className="w-full ">
+              <Field>
+                <Label className="text-sm/6 font-medium text-white">
+                  Title
+                </Label>
+                <Input
+                  placeholder="Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                  className={clsx(
+                    "mt-1 block w-full rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                  )}
+                />
+              </Field>
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
-                Description
-              </label>
-              <textarea
-                placeholder="Description"
-                className="w-full flex-1 bg-white dark:bg-gray-900  border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
+            <div className="w-full ">
+              <Field>
+                <Label className="text-sm/6 font-medium text-white">
+                  Description
+                </Label>
+                <Textarea
+                  placeholder="Description"
+                  required
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className={clsx(
+                    "mt-1 block w-full resize-none rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                  )}
+                  rows={3}
+                />
+              </Field>
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
-                Category
-              </label>
-              <select
-                className="w-full flex-1 bg-white dark:bg-gray-900 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
-                value={categoryId}
-                onChange={(e) => setCategoryId(e.target.value)}
-                required
-              >
-                <option value="">Select a category</option>
-                {categories.map((category) => (
-                  <option key={category._id} value={category._id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
+
+            <div className="w-full ">
+              <Field>
+                <Label className="text-sm/6 font-medium text-white">
+                  Category
+                </Label>
+                <div className="relative">
+                  <Select
+                    onChange={(e) => setCategoryId(e.target.value)}
+                    value={categoryId}
+                    className={clsx(
+                      "mt-1 block w-full appearance-none rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                      "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
+                      // Make the text of each option black on Windows
+                      "*:text-black"
+                    )}
+                  >
+                    <option value="">Select a category</option>
+                    {categories.map((category) => (
+                      <option key={category._id} value={category._id}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </Select>
+                  <ChevronDownIcon
+                    className="group pointer-events-none absolute top-3.5 right-2.5 size-4 fill-white/60"
+                    aria-hidden="true"
+                  />
+                </div>
+              </Field>
             </div>
             <div className="flex gap-2 mt-4">
               <button
@@ -161,70 +201,100 @@ const AddQuiz = () => {
 
         {currentStep > 1 && currentStep <= questions.length + 1 && (
           <div>
-            <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
-                Question {currentStep - 1}
-              </label>
-              <input
-                type="text"
-                className="w-full flex-1 bg-white dark:bg-gray-900  border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
-                value={questions[currentStep - 2].content}
-                onChange={(e) =>
-                  handleQuestionChange(
-                    currentStep - 2,
-                    "content",
-                    e.target.value
-                  )
-                }
-                placeholder="Question content"
-                required
-              />
+            <div className="w-full mb-4">
+              <Field>
+                <Label className="text-sm/6 font-medium text-white">
+                  Question {currentStep - 1}
+                </Label>
+                <Input
+                  value={questions[currentStep - 2].content}
+                  onChange={(e) =>
+                    handleQuestionChange(
+                      currentStep - 2,
+                      "content",
+                      e.target.value
+                    )
+                  }
+                  placeholder={`Enter you question #${currentStep - 1}`}
+                  required
+                  className={clsx(
+                    "mt-1 block w-full rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                  )}
+                />
+              </Field>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
-                Answers
-              </label>
-              <div className="flex flex-col gap-2">
-                {questions[currentStep - 2].answers.map(
-                  (answer, answerIndex) => (
-                    <input
-                      key={answerIndex}
-                      type="text"
-                      className="w-full flex-1 bg-white dark:bg-gray-900  border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
-                      value={answer}
-                      onChange={(e) =>
-                        handleQuestionChange(
-                          currentStep - 2,
-                          answerIndex,
-                          e.target.value
-                        )
-                      }
-                      placeholder={`Answer ${answerIndex + 1}`}
-                      required
-                    />
-                  )
-                )}
+              <h2 className="text-sm/6 font-medium text-white">Answers</h2>
+              <div className="flex flex-col gap-2 mt-1">
+                <Field className="space-y-2">
+                  {questions[currentStep - 2].answers.map(
+                    (answer, answerIndex) => (
+                      <div className="w-full" key={answerIndex}>
+                        <Input
+                          value={answer}
+                          onChange={(e) =>
+                            handleQuestionChange(
+                              currentStep - 2,
+                              answerIndex,
+                              e.target.value
+                            )
+                          }
+                          placeholder={`Enter answer #${answerIndex + 1}`}
+                          required
+                          className={clsx(
+                            "block w-full rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                          )}
+                        />
+                      </div>
+                    )
+                  )}
+                </Field>
               </div>
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1">
-                Correct Answer Index
-              </label>
-              <input
-                type="number"
-                className="w-full flex-1 bg-white dark:bg-gray-900  border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
-                value={questions[currentStep - 2].correctAnswerIndex}
-                onChange={(e) =>
-                  handleQuestionChange(
-                    currentStep - 2,
-                    "correctAnswerIndex",
-                    e.target.value
-                  )
-                }
-                min="0"
-                max="3"
-                required
-              />
+            <div className="w-full mb-4">
+              <Field>
+                <Label className="text-sm/6 font-medium text-white">
+                  Correct answer
+                </Label>
+                <div className="relative">
+                  <Select
+                    required
+                    value={
+                      questions[currentStep - 2].answers[
+                        questions[currentStep - 2].correctAnswerIndex
+                      ] || ""
+                    }
+                    onChange={(e) =>
+                      handleQuestionChange(
+                        currentStep - 2,
+                        "correctAnswer",
+                        e.target.value
+                      )
+                    }
+                    className={clsx(
+                      "mt-1 block w-full appearance-none rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                      "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
+                      // Make the text of each option black on Windows
+                      "*:text-black"
+                    )}
+                  >
+                    <option value="">Select correct answer</option>
+                    {questions[currentStep - 2].answers.map(
+                      (answer, answerIndex) => (
+                        <option key={answerIndex} value={answer}>
+                          {answer}
+                        </option>
+                      )
+                    )}
+                  </Select>
+                  <ChevronDownIcon
+                    className="group pointer-events-none absolute top-3.5 right-2.5 size-4 fill-white/60"
+                    aria-hidden="true"
+                  />
+                </div>
+              </Field>
             </div>
             <div className="flex gap-2 mt-4">
               <button
