@@ -67,7 +67,7 @@ const ViewAllCompletedQuizzes = () => {
                       <Link
                         to={`/quiz/${quizResult.quizId.slug}`}
                         key={quizResult._id}
-                        className="animate duration-300 col-span-4 border border-gray-300 dark:border-gray-700 dark:text-gray-100 rounded-xl shadow-sm px-3.5 py-2.5"
+                        className="animate duration-300 col-span-4 bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
                       >
                         <li className="flex justify-between items-center">
                           <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">

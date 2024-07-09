@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+
 import ViewAllQuizzes from "./ViewAllQuizzes";
 
 const QuizList = () => {
@@ -18,8 +19,8 @@ const QuizList = () => {
         }
         const data = await res.json();
         setQuizzes(data);
-      } catch (err) {
-        setError(err.message);
+      } catch (error) {
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -40,7 +41,7 @@ const QuizList = () => {
     <div className="shadow-sm mt-4">
       <div className="mb-2 flex items-center justify-between">
         <h3 className="font-bold text-md text-gray-600 dark:text-gray-300">
-          Quiz List
+          Popular by Quiz
         </h3>
         <ViewAllQuizzes />
       </div>
@@ -52,7 +53,7 @@ const QuizList = () => {
             <Link
               key={quiz._id}
               to={`/quiz/${quiz.slug}`}
-              className="animate duration-300 col-span-4 border border-1 border-gray-300 dark:border-gray-700 rounded-xl shadow-sm px-3.5 py-2.5"
+              className="animate duration-300 col-span-4 bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
             >
               <li className="flex justify-between items-center">
                 <div className="flex items-center gap-2">

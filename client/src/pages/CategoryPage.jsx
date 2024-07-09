@@ -78,7 +78,7 @@ const CategoryPage = () => {
 
         <p className="mt-1">You Completed 40% </p>
         <div className="w-full h-1 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden mt-2">
-          <div className="h-full bg-green-500" style={{ width: `40%` }}></div>
+          <div className="h-full bg-indigo-500" style={{ width: `40%` }}></div>
         </div>
       </div>
 
@@ -90,7 +90,7 @@ const CategoryPage = () => {
             <Link
               key={quiz._id}
               to={`/quiz/${quiz.slug}`}
-              className="animate duration-300 col-span-4 border border-1 border-gray-300 dark:border-gray-700 rounded-xl shadow-sm px-3.5 py-2.5"
+              className="animate duration-300 col-span-4 bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
             >
               <li className="flex justify-between items-center">
                 <div className="flex items-center gap-2">

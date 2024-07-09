@@ -91,7 +91,7 @@ const Home = () => {
         <div className="grid grid-cols-4 gap-2">
           <Link
             to="/start-game"
-            className="animate duration-300 col-span-4 w-full flex justify-between items-stretch rounded-xl px-3.5 py-2.5 bg-indigo-600 shadow-sm text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            className="animate duration-300 col-span-4 w-full flex justify-between items-stretch rounded-xl px-3.5 py-2.5 bg-indigo-500 shadow-sm text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
           >
             <div>
               <h3 className="text-xl font-semibold tracking-tight mb-2">

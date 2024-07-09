@@ -40,7 +40,7 @@ const QuizList = () => {
     <div className="shadow-sm mt-4">
       <div className="mb-2 flex items-center justify-between">
         <h3 className="font-bold text-md text-gray-600 dark:text-gray-300 ">
-          Category List
+          Popular by category
         </h3>
         <ViewAllCategories />
       </div>
@@ -52,7 +52,7 @@ const QuizList = () => {
             <Link
               key={category._id}
               to={`/category/${category.slug}`}
-              className="animate duration-300 col-span-2 sm:grid-col-4 border border-1 border-gray-300 dark:border-gray-700 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5"
+              className="animate duration-300 col-span-2 sm:grid-col-4 bg-white/5 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5"
             >
               <li className="flex flex-col h-full justify-between">
                 <div className="flex flex-col justify-between h-full">
@@ -63,7 +63,7 @@ const QuizList = () => {
                     <p className="mt-2 text-xs">You Completed 40% </p>
                     <div className="w-full h-1 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden mt-1 mb-1">
                       <div
-                        className="h-full bg-green-500"
+                        className="h-full bg-indigo-500"
                         style={{ width: `40%` }}
                       ></div>
                     </div>

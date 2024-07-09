@@ -122,7 +122,7 @@ const EditProfile = () => {
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
       <Drawer.Trigger asChild>
-        <button className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl p-2 text-md font-semibold hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+        <button className="rounded-full animate duration-200 w-full flex justify-center items-center gap-x-1 p-2 text-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
           <PencilSquareIcon className="size-5" />
         </button>
       </Drawer.Trigger>
@@ -164,7 +164,7 @@ const EditProfile = () => {
                     <img
                       src={formData.profilePhoto || currentUser.profilePhoto}
                       alt="profile"
-                      className="rounded-full h-24 w-24 object-cover cursor-pointer self-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                      className="rounded-full h-24 w-24 object-cover cursor-pointer self-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     />
                     <div className="text-center mt-4">
                       <p className="text-gray-700 dark:text-gray-300">
@@ -202,7 +202,7 @@ const EditProfile = () => {
                       type="text"
                       id="username"
                       placeholder="Your name"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onChange={handleChange}
                     />
                   </div>
@@ -218,7 +218,7 @@ const EditProfile = () => {
                       type="text"
                       id="email"
                       placeholder="Email"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onChange={handleChange}
                     />
                   </div>
@@ -233,7 +233,7 @@ const EditProfile = () => {
                       Cancel
                     </button>
                     <button
-                      className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                      className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                       onClick={handleSubmitClose}
                     >
                       Save

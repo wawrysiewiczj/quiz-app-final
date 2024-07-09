@@ -82,7 +82,7 @@ const Settings = () => {
                     <Switch
                       checked={theme === "dark"}
                       onChange={handleThemeToggle}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-600"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-500"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -95,7 +95,7 @@ const Settings = () => {
                       disabled
                       checked={enabled2}
                       onChange={setEnabled2}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-600"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-500"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -129,7 +129,7 @@ const Settings = () => {
                       disabled
                       checked={enabled3}
                       onChange={setEnabled3}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-600"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-500"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -142,7 +142,7 @@ const Settings = () => {
                       disabled
                       checked={enabled4}
                       onChange={setEnabled4}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-600"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-500"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
                     </Switch>

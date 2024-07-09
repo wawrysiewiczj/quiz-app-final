@@ -69,15 +69,27 @@ const Profile = () => {
     <Animation>
       <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
         {/* Profile Info */}
-        <div className="col-span-4 rounded-xl p-3 bg-gray-100 dark:bg-gray-900 bg-opacity-0 flex flex-col gap-2">
-          <div className="flex flex-col gap-2 items-center justify-center mt-4">
-            <img
-              className="w-24 h-24 rounded-full object-cover shadow-sm"
-              src={currentUser?.profilePhoto}
-              alt="Profile Photo"
-            />
+        <div className="col-span-4 rounded-xl p-3 bg-opacity-0 flex flex-col gap-2 bg-white/5">
+          <div className="flex flex-col gap-2 items-center justify-center mt-4 ">
+            <div className="p-1 bg-indigo-500 rounded-full relative">
+              <img
+                className="w-24 h-24 rounded-full object-cover shadow-sm"
+                src={currentUser?.profilePhoto}
+                alt="Profile Photo"
+              />
+              <div className="absolute bottom-1 right-0 bg-indigo-500 rounded-full"></div>
+            </div>
             <h3 className="text-2xl font-semibold">@{currentUser?.username}</h3>
-            <p className="text-sm">{currentUser?.email}</p>
+            <div className="flex gap-2">
+              <span className="text-sm font-semibold rounded-xl bg-gray-800 px-3 py-2">
+                Points
+                <span className=" text-indigo-400 ml-1">1000</span>
+              </span>
+              <span className="text-sm font-semibold rounded-xl bg-gray-800 px-3 py-2">
+                Rank
+                <span className=" text-indigo-400 ml-1">11</span>
+              </span>
+            </div>
           </div>
           <div className="flex items-center mt-4">
             <EditProfile />
@@ -86,7 +98,7 @@ const Profile = () => {
               onClick={handleSignOut}
               className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl p-2 text-md font-semibold hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
-              <ArrowRightOnRectangleIcon className="size-5 " />
+              <ArrowRightOnRectangleIcon className="size-5" />
             </Link>
           </div>
         </div>
@@ -94,38 +106,35 @@ const Profile = () => {
         {/* Quiz Statistics */}
         <div className="col-span-4 flex flex-col gap-2">
           <div className="w-full max-w-md">
-            <TabGroup>
-              <TabList className="rounded-xl flex w-full justify-between gap-4 p-1 bg-gray-100 dark:bg-gray-900">
+            <TabGroup className="rounded-xl bg-white/5">
+              <TabList className="rounded-xl flex w-full justify-between gap-4 p-1 ">
                 <Tab
                   key="stats"
-                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none data-[selected]:bg-bg-gray-100 data-[selected]:dark:bg-gray-700 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-600 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
                 >
                   Stats
                 </Tab>
                 <Tab
                   key="badges"
-                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none data-[selected]:bg-bg-gray-100 data-[selected]:dark:bg-gray-700 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-600 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
                 >
                   Badges
                 </Tab>
                 <Tab
-                  key="achivements"
-                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none data-[selected]:bg-bg-gray-100 data-[selected]:dark:bg-gray-700 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                  key="achives"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-600 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white"
                 >
-                  Achivements
+                  Achives
                 </Tab>
               </TabList>
-              <TabPanels className="mt-2">
-                <TabPanel
-                  key="stats"
-                  className="rounded-xl bg-gray-100 dark:bg-gray-900 p-3"
-                >
+              <TabPanels>
+                <TabPanel key="stats" className="p-3">
                   <div className="grid grid-cols-3 gap-2 text-center">
                     <div>
                       <h4 className="text-2xl font-bold text-indigo-500">
                         {totalQuizzesTaken}
                       </h4>
-                      <p className="text-sm">Quizzes Taken</p>
+                      <p className="text-sm">Completed</p>
                     </div>
                     <div>
                       <h4 className="text-2xl font-bold text-indigo-500">
@@ -135,24 +144,18 @@ const Profile = () => {
                     </div>
                     <div>
                       <h4 className="text-2xl font-bold text-indigo-500">0</h4>
-                      <p className="text-sm">Quizzes Created</p>
+                      <p className="text-sm">Created</p>
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel
-                  key="badges"
-                  className="rounded-xl bg-gray-100 dark:bg-gray-900 p-3"
-                >
+                <TabPanel key="badges" className="p-3">
                   <ul className="flex gap-2" aria-hidden="true">
                     <li>20.07.2023</li>
                     <li>32 comments</li>
                     <li>3 shares</li>
                   </ul>
                 </TabPanel>
-                <TabPanel
-                  key="achivements"
-                  className="rounded-xl bg-gray-100 dark:bg-gray-900 p-3"
-                >
+                <TabPanel key="achives" className="p-3">
                   <ul className="flex gap-2" aria-hidden="true">
                     <li>20.07.2023</li>
                     <li>32 comments</li>
@@ -181,7 +184,7 @@ const Profile = () => {
                 <Link
                   to={`/quiz/${quizResult.quizId.slug}`}
                   key={quizResult._id}
-                  className="animate duration-300 col-span-4 border border-1 border-gray-300 dark:border-gray-700 rounded-xl shadow-sm px-3.5 py-2.5"
+                  className="animate duration-300 col-span-4 bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
                 >
                   <li className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -227,7 +230,7 @@ const Profile = () => {
             <ul className="grid grid-cols-4 gap-2">
               <Link
                 to={/quiz/}
-                className="animate duration-300 col-span-4 border border-1 border-gray-300 dark:border-gray-700 rounded-xl shadow-sm px-3.5 py-2.5"
+                className="animate duration-300 col-span-4 bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
               >
                 <li className="flex justify-between items-center">
                   <div className="flex items-center gap-2">

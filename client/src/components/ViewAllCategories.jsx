@@ -58,7 +58,7 @@ const ViewAllCompletedQuizzes = () => {
                       <Link
                         key={category._id}
                         to={`/category/${category.slug}`}
-                        className="animate duration-300 col-span-2 sm:grid-col-4 border border-1 border-gray-300 dark:border-gray-700 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5"
+                        className="animate duration-300 col-span-2 sm:grid-col-4 bg-white/5 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5"
                       >
                         <li className="flex flex-col h-full justify-between">
                           <div className="flex flex-col justify-between h-full">

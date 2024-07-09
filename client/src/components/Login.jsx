@@ -77,7 +77,7 @@ const Login = () => {
                       placeholder="Username"
                       aria-describedby="username"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onChange={handleChange}
                     />
                     <div id="username" className="sr-only">
@@ -99,7 +99,7 @@ const Login = () => {
                       placeholder="********"
                       aria-describedby="password"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onChange={handleChange}
                     />
                     <div id="password" className="sr-only">
@@ -110,7 +110,7 @@ const Login = () => {
                   <div className="flex flex-col gap-2 mt-4">
                     <button
                       disabled={loading}
-                      className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:bg-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                      className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:bg-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                       type="submit"
                     >
                       {loading ? "Logging In..." : "Log in"}

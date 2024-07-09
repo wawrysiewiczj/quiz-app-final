@@ -95,8 +95,8 @@ const QuizPage = () => {
         </h1>
         <p className="text-center text-sm">{quiz.description}</p>
         <p className="text-center text-sm mt-4">Rules:</p>
-        <ol className="list-decimal list-inside flex flex-col gap-2">
-          <li>
+        <ol className="list-decimal list-inside flex flex-col gap-2 text-sm">
+          <li className="">
             <span className="font-semibold">Time Limit: </span>Each question has
             a set time limit for answering. Once the time expires, the app will
             automatically move to the next question.
@@ -123,13 +123,15 @@ const QuizPage = () => {
             language or behavior may result in disqualification.
           </li>
         </ol>
-        <div className="flex gap-2 mt-4">
-          <button
-            onClick={startQuiz}
-            className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-          >
-            Start Test
-          </button>
+        <div className="w-full fixed bottom-20 left-0">
+          <div className="flex flex-col justify-around max-w-3xl mx-auto px-4">
+            <button
+              onClick={startQuiz}
+              className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            >
+              Start Test
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -152,19 +154,21 @@ const QuizPage = () => {
           {/* Możesz dodać inne statystyki, np. procent poprawnych odpowiedzi, czas wykonania quizu itp. */}
         </div>
         {/* Buttons */}
-        <div className="flex flex-col gap-2 mt-4 w-full ">
-          <Link
-            to=""
-            className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-          >
-            Statistics
-          </Link>
-          <Link
-            className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-            to=""
-          >
-            More quizzes
-          </Link>
+        <div className="w-full fixed bottom-20 left-0">
+          <div className="flex flex-col gap-2 justify-around max-w-3xl mx-auto px-4">
+            <Link
+              to=""
+              className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            >
+              Statistics
+            </Link>
+            <Link
+              className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              to=""
+            >
+              More quizzes
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -184,48 +188,50 @@ const QuizPage = () => {
           </p>
         </div>
       </div>
-      <h2 className="text-2xl font-semibold">{currentQuestion.content}</h2>
-      <div className="mx-auto w-full max-w-md mt-4">
-        <RadioGroup
-          className="space-y-2"
-          value={selectedAnswers[currentQuestionIndex]}
-          onChange={handleAnswerSelect}
-        >
-          {currentQuestion.answers.map((answer, aIndex) => (
-            <Radio
-              key={aIndex}
-              value={aIndex}
-              className="group relative flex cursor-pointer rounded-lg bg-white/5 py-4 px-5 text-white shadow-md transition focus:outline-none"
-            >
-              {({ checked }) => (
-                <div className="flex w-full items-center justify-between">
-                  <p className="">{answer.content}</p>
-                  {checked && (
-                    <CheckCircleIcon className="w-6 h-6 fill-white opacity-100" />
-                  )}
-                </div>
-              )}
-            </Radio>
-          ))}
-        </RadioGroup>
-      </div>
+      <h2 className="text-3xl font-semibold mt-8">{currentQuestion.content}</h2>
+      <div className="w-full fixed bottom-20 left-0">
+        <div className="flex flex-col gap-4 justify-around max-w-3xl mx-auto px-4">
+          <RadioGroup
+            className="space-y-2"
+            value={selectedAnswers[currentQuestionIndex]}
+            onChange={handleAnswerSelect}
+          >
+            {currentQuestion.answers.map((answer, aIndex) => (
+              <Radio
+                key={aIndex}
+                value={aIndex}
+                className="group relative flex cursor-pointer rounded-lg bg-white/5 py-4 px-5 text-white shadow-md transition focus:outline-none"
+              >
+                {({ checked }) => (
+                  <div className="flex w-full items-center justify-between">
+                    <p className="">{answer.content}</p>
+                    {checked && (
+                      <CheckCircleIcon className="w-6 h-6 fill-white opacity-100" />
+                    )}
+                  </div>
+                )}
+              </Radio>
+            ))}
+          </RadioGroup>
 
-      <div className="flex gap-2 mt-4">
-        {currentQuestionIndex < quiz.questions.length - 1 ? (
-          <button
-            onClick={goToNextQuestion}
-            className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-          >
-            Next Question
-          </button>
-        ) : (
-          <button
-            onClick={handleSubmit}
-            className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-          >
-            Submit Quiz
-          </button>
-        )}
+          <div className="w-full flex gap-2 ">
+            {currentQuestionIndex < quiz.questions.length - 1 ? (
+              <button
+                onClick={goToNextQuestion}
+                className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              >
+                Next Question
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              >
+                Submit Quiz
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
