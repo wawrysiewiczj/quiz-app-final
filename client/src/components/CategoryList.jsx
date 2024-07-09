@@ -37,7 +37,7 @@ const QuizList = () => {
   }
 
   return (
-    <div className="shadow-sm mt-4">
+    <div className="mt-4">
       <div className="mb-2 flex items-center justify-between">
         <h3 className="font-bold text-md text-gray-600 dark:text-gray-300 ">
           Popular by category
@@ -52,7 +52,7 @@ const QuizList = () => {
             <Link
               key={category._id}
               to={`/category/${category.slug}`}
-              className="animate duration-300 col-span-2 sm:grid-col-4 bg-white/5 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5"
+              className="animate duration-300 col-span-2 sm:grid-col-4 bg-black/5 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5"
             >
               <li className="flex flex-col h-full justify-between">
                 <div className="flex flex-col justify-between h-full">

@@ -11,6 +11,7 @@ import {
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
+import Animation from "./Animation";
 
 const AddQuiz = () => {
   const navigate = useNavigate();
@@ -116,14 +117,14 @@ const AddQuiz = () => {
   };
 
   return (
-    <div className="">
+    <Animation className="">
       <h2 className="text-2xl font-bold mb-4">Add New Quiz</h2>
       <form onSubmit={handleSubmit}>
         {currentStep === 1 && (
           <div>
-            <div className="w-full ">
+            <div className="w-full mt-1">
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-sm/6 font-medium text-gray-900 dark:text-gray-100">
                   Title
                 </Label>
                 <Input
@@ -132,15 +133,15 @@ const AddQuiz = () => {
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   className={clsx(
-                    "mt-1 block w-full rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                    "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
                     "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
                   )}
                 />
               </Field>
             </div>
-            <div className="w-full ">
+            <div className="w-full mt-1">
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-sm/6 font-medium text-gray-900 dark:text-gray-100">
                   Description
                 </Label>
                 <Textarea
@@ -149,17 +150,17 @@ const AddQuiz = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   className={clsx(
-                    "mt-1 block w-full resize-none rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                    "resize-none block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
                     "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
                   )}
-                  rows={3}
+                  rows={4}
                 />
               </Field>
             </div>
 
-            <div className="w-full ">
+            <div className="w-full mt-1">
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-sm/6 font-medium text-gray-900 dark:text-gray-100">
                   Category
                 </Label>
                 <div className="relative">
@@ -167,7 +168,7 @@ const AddQuiz = () => {
                     onChange={(e) => setCategoryId(e.target.value)}
                     value={categoryId}
                     className={clsx(
-                      "mt-1 block w-full appearance-none rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                      "appearance-none block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
                       "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
                       // Make the text of each option black on Windows
                       "*:text-black"
@@ -181,7 +182,7 @@ const AddQuiz = () => {
                     ))}
                   </Select>
                   <ChevronDownIcon
-                    className="group pointer-events-none absolute top-3.5 right-2.5 size-4 fill-white/60"
+                    className="group pointer-events-none absolute top-3.5 right-2.5 size-4"
                     aria-hidden="true"
                   />
                 </div>
@@ -203,7 +204,7 @@ const AddQuiz = () => {
           <div>
             <div className="w-full mb-4">
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-sm/6 font-medium text-gray-900 dark:text-gray-100">
                   Question {currentStep - 1}
                 </Label>
                 <Input
@@ -218,14 +219,16 @@ const AddQuiz = () => {
                   placeholder={`Enter you question #${currentStep - 1}`}
                   required
                   className={clsx(
-                    "mt-1 block w-full rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                    "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
                     "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
                   )}
                 />
               </Field>
             </div>
             <div className="mb-4">
-              <h2 className="text-sm/6 font-medium text-white">Answers</h2>
+              <h2 className="text-sm/6 font-medium text-gray-900 dark:text-gray-100">
+                Answers
+              </h2>
               <div className="flex flex-col gap-2 mt-1">
                 <Field className="space-y-2">
                   {questions[currentStep - 2].answers.map(
@@ -243,7 +246,7 @@ const AddQuiz = () => {
                           placeholder={`Enter answer #${answerIndex + 1}`}
                           required
                           className={clsx(
-                            "block w-full rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                            "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
                             "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
                           )}
                         />
@@ -255,7 +258,7 @@ const AddQuiz = () => {
             </div>
             <div className="w-full mb-4">
               <Field>
-                <Label className="text-sm/6 font-medium text-white">
+                <Label className="text-sm/6 font-medium text-gray-900 dark:text-gray-100">
                   Correct answer
                 </Label>
                 <div className="relative">
@@ -274,7 +277,7 @@ const AddQuiz = () => {
                       )
                     }
                     className={clsx(
-                      "mt-1 block w-full appearance-none rounded-lg border-none bg-white/5 py-2.5 px-3 text-sm/6 text-white",
+                      "appearance-none block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
                       "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
                       // Make the text of each option black on Windows
                       "*:text-black"
@@ -290,7 +293,7 @@ const AddQuiz = () => {
                     )}
                   </Select>
                   <ChevronDownIcon
-                    className="group pointer-events-none absolute top-3.5 right-2.5 size-4 fill-white/60"
+                    className="group pointer-events-none absolute top-3.5 right-2.5 size-4 "
                     aria-hidden="true"
                   />
                 </div>
@@ -314,7 +317,7 @@ const AddQuiz = () => {
           </div>
         )}
       </form>
-    </div>
+    </Animation>
   );
 };
 

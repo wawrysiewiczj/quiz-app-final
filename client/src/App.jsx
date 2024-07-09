@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
@@ -45,10 +45,10 @@ export default function App() {
         <Header />
 
         <Routes>
-          <Route path="/*" element={<NotFound />} />
-          <Route path="/start" element={<Start />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Start />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/add-quiz" element={<AddQuiz />} />
             <Route path="/quiz/:quizSlug" element={<QuizPage />} />

@@ -82,7 +82,7 @@ const SignUp = () => {
                       placeholder="johndoe"
                       aria-describedby="username"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
                       onChange={handleChange}
                     />
                     <div id="username" className="sr-only">
@@ -105,7 +105,7 @@ const SignUp = () => {
                       placeholder="johndoe@example.com"
                       aria-describedby="email"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
                       onChange={handleChange}
                     />
                   </div>
@@ -124,7 +124,7 @@ const SignUp = () => {
                       placeholder="********"
                       aria-describedby="password"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
                       onChange={handleChange}
                     />
                     <div id="password" className="sr-only">
@@ -146,7 +146,7 @@ const SignUp = () => {
                       aria-describedby="passwordConfirmation"
                       aria-invalid="false"
                       required
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
                       onChange={handleChange}
                     />
                     <div id="passwordConfirmation" className="sr-only">
@@ -159,7 +159,17 @@ const SignUp = () => {
                       className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:bg-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                       type="submit"
                     >
-                      {loading ? "Signing Up..." : "Sign Up"}
+                      {loading ? (
+                        <span>
+                          <svg
+                            class="animate-spin h-5 w-5 mr-3 ..."
+                            viewBox="0 0 24 24"
+                          ></svg>
+                          Signing Up...
+                        </span>
+                      ) : (
+                        "Sign Up"
+                      )}
                     </button>
                     <div className="flex items-center justify-center text-sm gap-2 mt-2">
                       <p className="text-gray-700 dark:text-gray-300">

@@ -149,7 +149,7 @@ const EditProfile = () => {
                       id="password"
                       placeholder="********"
                       autoComplete="false"
-                      className="flex-1 w-full bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="flex-1 w-full bg-black placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onChange={handleChange}
                     />
                   </div>
@@ -165,7 +165,7 @@ const EditProfile = () => {
                       id="confirmPassword"
                       placeholder="********"
                       autoComplete="false"
-                      className=" flex-1 w-full bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className=" flex-1 w-full bg-black placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onChange={handleChange}
                     />
                   </div>

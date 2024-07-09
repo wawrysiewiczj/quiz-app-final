@@ -128,8 +128,8 @@ const EditProfile = () => {
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-        <Drawer.Content className="max-w-3xl mx-auto bg-gray-100 z-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 flex flex-col rounded-t-3xl fixed bottom-0 left-0 right-0 max-h-[80%]">
-          <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-t-3xl pb-24 flex-1 overflow-auto">
+        <Drawer.Content className="max-w-3xl mx-auto bg-gray-200 z-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 flex flex-col rounded-t-3xl fixed bottom-0 left-0 right-0 max-h-[80%]">
+          <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-t-3xl pb-24 flex-1 overflow-auto">
             <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-4" />
             <div className="max-w-md mx-auto">
               <Drawer.Title className="font-medium text-center">
@@ -202,7 +202,7 @@ const EditProfile = () => {
                       type="text"
                       id="username"
                       placeholder="Your name"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
                       onChange={handleChange}
                     />
                   </div>
@@ -218,7 +218,7 @@ const EditProfile = () => {
                       type="text"
                       id="email"
                       placeholder="Email"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
                       onChange={handleChange}
                     />
                   </div>

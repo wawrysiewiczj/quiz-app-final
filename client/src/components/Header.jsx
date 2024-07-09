@@ -61,7 +61,7 @@ const Header = () => {
       {/* <form className="w-full flex gap-2">
         <input
           type="text"
-          className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="flex-1 bg-black placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           placeholder="Search"
         />
         <button className="flex justify-center items-center bg-indigo-500 text-white px-3.5 py-2.5 rounded-xl shadow hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

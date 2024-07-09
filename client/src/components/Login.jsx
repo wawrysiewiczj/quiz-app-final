@@ -37,7 +37,7 @@ const Login = () => {
         return;
       }
       dispatch(loginSuccess(data));
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       dispatch(loginFailure(error));
       toast.error(error.message);
@@ -77,7 +77,7 @@ const Login = () => {
                       placeholder="Username"
                       aria-describedby="username"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
                       onChange={handleChange}
                     />
                     <div id="username" className="sr-only">
@@ -99,7 +99,7 @@ const Login = () => {
                       placeholder="********"
                       aria-describedby="password"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
                       onChange={handleChange}
                     />
                     <div id="password" className="sr-only">

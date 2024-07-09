@@ -64,8 +64,8 @@ const Settings = () => {
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-        <Drawer.Content className="max-w-3xl mx-auto bg-gray-100 z-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 flex flex-col rounded-t-3xl fixed bottom-0 left-0 right-0 max-h-[80%]">
-          <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-t-3xl pb-24 flex-1 overflow-auto">
+        <Drawer.Content className="max-w-3xl mx-auto bg-gray-200 z-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 flex flex-col rounded-t-3xl fixed bottom-0 left-0 right-0 max-h-[80%]">
+          <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-t-3xl pb-24 flex-1 overflow-auto">
             <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
             <div className="max-w-md mx-auto">
               <Drawer.Title className="font-medium text-center">
@@ -82,9 +82,9 @@ const Settings = () => {
                     <Switch
                       checked={theme === "dark"}
                       onChange={handleThemeToggle}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-500"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500"
                     >
-                      <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
+                      <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                     </Switch>
                   </div>
                   <div className="flex items-center justify-between">
@@ -95,9 +95,9 @@ const Settings = () => {
                       disabled
                       checked={enabled2}
                       onChange={setEnabled2}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-500"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500"
                     >
-                      <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
+                      <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                     </Switch>
                   </div>
                   <div className="flex items-center justify-between">
@@ -106,7 +106,7 @@ const Settings = () => {
                     </span>
                     <select
                       disabled
-                      className="bg-gray-100 text-gray-700 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="bg-gray-100 text-gray-700 p-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       <option>English</option>
                       <option>Spanish</option>
@@ -129,9 +129,9 @@ const Settings = () => {
                       disabled
                       checked={enabled3}
                       onChange={setEnabled3}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-500"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500"
                     >
-                      <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
+                      <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                     </Switch>
                   </div>
                   <div className="flex items-center justify-between">
@@ -142,9 +142,9 @@ const Settings = () => {
                       disabled
                       checked={enabled4}
                       onChange={setEnabled4}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-500"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500"
                     >
-                      <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
+                      <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                     </Switch>
                   </div>
                 </div>

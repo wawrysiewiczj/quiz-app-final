@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
+import Animation from "../components/Animation";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 const CategoryPage = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -53,11 +55,7 @@ const CategoryPage = () => {
   }, [categorySlug, currentUser]);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        Loading...
-      </div>
-    );
+    return <LoadingAnimation />;
   }
 
   if (error) {
@@ -69,7 +67,7 @@ const CategoryPage = () => {
   }
 
   return (
-    <div>
+    <Animation>
       <div>
         <h2 className="text-2xl font-bold tracking-normal sm:text-3xl mt-2">
           {category && category.name}
@@ -90,7 +88,7 @@ const CategoryPage = () => {
             <Link
               key={quiz._id}
               to={`/quiz/${quiz.slug}`}
-              className="animate duration-300 col-span-4 bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
+              className="animate duration-300 col-span-4 bg-black/5 rounded-xl shadow-sm px-3.5 py-2.5"
             >
               <li className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
@@ -116,7 +114,7 @@ const CategoryPage = () => {
           ))}
         </ul>
       )}
-    </div>
+    </Animation>
   );
 };
 

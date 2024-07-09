@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Radio, RadioGroup } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import Animation from "../components/Animation";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 const QuizPage = () => {
   const navigate = useNavigate();
@@ -83,101 +85,105 @@ const QuizPage = () => {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingAnimation />;
   if (error) return <div>Error loading quiz</div>;
   if (!quiz) return <div>No quiz found</div>;
 
   if (!quizStarted) {
     return (
-      <div className="flex flex-col gap-2">
-        <h1 className="text-center text-2xl font-bold tracking-normal sm:text-3xl mt-2">
-          {quiz.title}
-        </h1>
-        <p className="text-center text-sm">{quiz.description}</p>
-        <p className="text-center text-sm mt-4">Rules:</p>
-        <ol className="list-decimal list-inside flex flex-col gap-2 text-sm">
-          <li className="">
-            <span className="font-semibold">Time Limit: </span>Each question has
-            a set time limit for answering. Once the time expires, the app will
-            automatically move to the next question.
-          </li>
-          <li>
-            <span className="font-semibold">No Cheating:</span> Participants are
-            not allowed to use external resources (such as the internet, books,
-            or help from others) while answering the quiz questions.
-          </li>
-          <li>
-            <span className="font-semibold">Scoring System:</span> Points are
-            awarded based on the accuracy and speed of the answers. Correct
-            answers within a shorter time frame will earn more points.
-          </li>
-          <li>
-            <span className="font-semibold">Single Attempt:</span> Each quiz can
-            only be taken once per user. No retakes are allowed to ensure
-            fairness.
-          </li>
+      <Animation>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-center text-2xl font-bold tracking-normal sm:text-3xl mt-2">
+            {quiz.title}
+          </h1>
+          <p className="text-center text-sm">{quiz.description}</p>
+          <p className="text-center text-sm mt-4">Rules:</p>
+          <ol className="list-decimal list-inside flex flex-col gap-2 text-sm">
+            <li className="">
+              <span className="font-semibold">Time Limit: </span>Each question
+              has a set time limit for answering. Once the time expires, the app
+              will automatically move to the next question.
+            </li>
+            <li>
+              <span className="font-semibold">No Cheating:</span> Participants
+              are not allowed to use external resources (such as the internet,
+              books, or help from others) while answering the quiz questions.
+            </li>
+            <li>
+              <span className="font-semibold">Scoring System:</span> Points are
+              awarded based on the accuracy and speed of the answers. Correct
+              answers within a shorter time frame will earn more points.
+            </li>
+            <li>
+              <span className="font-semibold">Single Attempt:</span> Each quiz
+              can only be taken once per user. No retakes are allowed to ensure
+              fairness.
+            </li>
 
-          <li>
-            <span className="font-semibold">Behavior:</span>Participants should
-            maintain respectful behavior throughout the quiz. Any inappropriate
-            language or behavior may result in disqualification.
-          </li>
-        </ol>
-        <div className="w-full fixed bottom-20 left-0">
-          <div className="flex flex-col justify-around max-w-3xl mx-auto px-4">
-            <button
-              onClick={startQuiz}
-              className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-            >
-              Start Test
-            </button>
+            <li>
+              <span className="font-semibold">Behavior:</span>Participants
+              should maintain respectful behavior throughout the quiz. Any
+              inappropriate language or behavior may result in disqualification.
+            </li>
+          </ol>
+          <div className="w-full fixed bottom-20 left-0">
+            <div className="flex flex-col justify-around max-w-3xl mx-auto px-4">
+              <button
+                onClick={startQuiz}
+                className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              >
+                Start Test
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </Animation>
     );
   }
 
   if (result) {
     return (
-      <div className="mt-8 text-center flex flex-col items-center gap-2">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/5511/5511415.png"
-          alt=""
-          className="w-48 h-48"
-        />
-        <div className="mt-4">
-          <h2 className="text-xl font-semibold mb-2">
-            Congrats! You passed the quiz!
-          </h2>
-          <p>Your score: {result.score}%</p>
-          <p>Your earn {result.score} Quizpoints</p>
-          {/* Możesz dodać inne statystyki, np. procent poprawnych odpowiedzi, czas wykonania quizu itp. */}
-        </div>
-        {/* Buttons */}
-        <div className="w-full fixed bottom-20 left-0">
-          <div className="flex flex-col gap-2 justify-around max-w-3xl mx-auto px-4">
-            <Link
-              to=""
-              className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-            >
-              Statistics
-            </Link>
-            <Link
-              className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              to=""
-            >
-              More quizzes
-            </Link>
+      <Animation>
+        <div className="mt-8 text-center flex flex-col items-center gap-2">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/5511/5511415.png"
+            alt=""
+            className="w-48 h-48"
+          />
+          <div className="mt-4">
+            <h2 className="text-xl font-semibold mb-2">
+              Congrats! You passed the quiz!
+            </h2>
+            <p>Your score: {result.score}%</p>
+            <p>Your earn {result.score} Quizpoints</p>
+            {/* Możesz dodać inne statystyki, np. procent poprawnych odpowiedzi, czas wykonania quizu itp. */}
+          </div>
+          {/* Buttons */}
+          <div className="w-full fixed bottom-20 left-0">
+            <div className="flex flex-col gap-2 justify-around max-w-3xl mx-auto px-4">
+              <Link
+                to=""
+                className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              >
+                Statistics
+              </Link>
+              <Link
+                className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                to=""
+              >
+                More quizzes
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      </Animation>
     );
   }
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
 
   return (
-    <div>
+    <Animation>
       <div className="flex justify-between items-center">
         <div className="text-center">
           <p>Time Remaining: {/* Add timer logic here */}</p>
@@ -200,13 +206,13 @@ const QuizPage = () => {
               <Radio
                 key={aIndex}
                 value={aIndex}
-                className="group relative flex cursor-pointer rounded-lg bg-white/5 py-4 px-5 text-white shadow-md transition focus:outline-none"
+                className="group relative flex cursor-pointer rounded-lg bg-black/10 py-4 px-5  shadow-md transition focus:outline-none"
               >
                 {({ checked }) => (
                   <div className="flex w-full items-center justify-between">
                     <p className="">{answer.content}</p>
                     {checked && (
-                      <CheckCircleIcon className="w-6 h-6 fill-white opacity-100" />
+                      <CheckCircleIcon className="w-6 h-6  opacity-100" />
                     )}
                   </div>
                 )}
@@ -233,7 +239,7 @@ const QuizPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Animation>
   );
 };
 

@@ -27,7 +27,7 @@ const OAuth = () => {
       });
       const data = await res.json();
       dispatch(loginSuccess(data));
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.log("Could not login with google", error);
     }

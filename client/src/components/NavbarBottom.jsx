@@ -9,7 +9,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
-  { to: "/", icon: HomeIcon, label: "Home" },
+  { to: "/home", icon: HomeIcon, label: "Home" },
   {
     to: "/start-game",
     icon: Squares2X2Icon,
@@ -28,8 +28,8 @@ const NavbarBottom = () => {
   const location = useLocation();
 
   return (
-    <div className="w-full  bg-gray-100 dark:bg-gray-900 fixed bottom-0 left-0 z-50 backdrop-blur-sm bg-opacity-5">
-      <div className="flex justify-around max-w-3xl mx-auto px-4 py-2 rounded-t-[10px]">
+    <div className="w-full fixed bottom-0 left-0 z-50 bg-black/5 backdrop-blur-3xl ">
+      <div className="flex justify-around max-w-3xl mx-auto px-4 py-2 ">
         {navItems.map((item, index) => {
           const isActive = location.pathname === item.to;
 

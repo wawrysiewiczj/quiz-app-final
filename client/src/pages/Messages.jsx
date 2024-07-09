@@ -194,7 +194,7 @@ const Messages = () => {
                 </button> */}
                 <input
                   type="text"
-                  className="flex-1 bg-white dark:bg-gray-900 placeholder:text-gray-500 dark:placeholder:text-gray-400 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="flex-1 bg-black dark:bg-gray-900 placeholder:text-gray-500 dark:placeholder:text-gray-400 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   placeholder="Aa"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
