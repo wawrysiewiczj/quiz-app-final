@@ -47,7 +47,7 @@ const ViewAllCompletedQuizzes = () => {
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
       <Drawer.Trigger asChild>
-        <button className="font-bold text-sm text-violet-500">View all</button>
+        <button className="font-bold text-sm text-indigo-500">View all</button>
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
@@ -71,7 +71,7 @@ const ViewAllCompletedQuizzes = () => {
                       >
                         <li className="flex justify-between items-center">
                           <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">
-                            <span className="rounded-xl bg-violet-300 dark:bg-violet-800 p-3 bg-opacity-70">
+                            <span className="rounded-xl bg-indigo-300 dark:bg-indigo-800 p-3 bg-opacity-70">
                               <AcademicCapIcon className="h-6 w-6" />
                             </span>
                           </div>

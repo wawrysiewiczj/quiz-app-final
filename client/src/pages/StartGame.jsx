@@ -38,7 +38,7 @@ const StartGame = () => {
       onClick={onClick}
       className={`animate duration-200 w-full px-4 py-1 font-semibold rounded-2xl ${
         isActive
-          ? "bg-violet-200 text-violet-800 dark:bg-violet-800 dark:text-gray-100"
+          ? "bg-indigo-200 text-indigo-800 dark:bg-indigo-800 dark:text-gray-100"
           : "bg-transparent"
       }`}
     >
@@ -90,10 +90,10 @@ const StartGame = () => {
           placeholder="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 bg-white placeholder:text-sm placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
+          className="flex-1 bg-white placeholder:text-sm placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
         />
 
-        <button className="flex justify-center items-center bg-violet-600 text-white px-3.5 py-2.5 rounded-xl shadow hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <button className="flex justify-center items-center bg-indigo-600 text-white px-3.5 py-2.5 rounded-xl shadow hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <MagnifyingGlassIcon className="w-5 h-5 inline" />
         </button>
       </form>

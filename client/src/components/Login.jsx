@@ -47,7 +47,7 @@ const Login = () => {
   return (
     <Drawer.Root>
       <Drawer.Trigger asChild>
-        <button className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-violet-500 px-3.5 py-2.5 text-md font-semibold text-violet-500 shadow-sm hover:bg-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+        <button className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
           I have an account
         </button>
       </Drawer.Trigger>
@@ -77,7 +77,7 @@ const Login = () => {
                       placeholder="Username"
                       aria-describedby="username"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
+                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                       onChange={handleChange}
                     />
                     <div id="username" className="sr-only">
@@ -99,7 +99,7 @@ const Login = () => {
                       placeholder="********"
                       aria-describedby="password"
                       aria-invalid="false"
-                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
+                      className="w-full flex-1 bg-white dark:bg-gray-700 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                       onChange={handleChange}
                     />
                     <div id="password" className="sr-only">
@@ -110,7 +110,7 @@ const Login = () => {
                   <div className="flex flex-col gap-2 mt-4">
                     <button
                       disabled={loading}
-                      className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-violet-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-violet-500 disabled:bg-violet-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                      className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:bg-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                       type="submit"
                     >
                       {loading ? "Logging In..." : "Log in"}
@@ -122,7 +122,7 @@ const Login = () => {
                       </p>
                       <Link
                         to="/apps/quiz-app-new/sign-up"
-                        className="font-semibold leading-6 text-violet-500 hover:text-indigo-500"
+                        className="font-semibold leading-6 text-indigo-500 hover:text-indigo-500"
                       >
                         <span>Sign Up</span>
                       </Link>

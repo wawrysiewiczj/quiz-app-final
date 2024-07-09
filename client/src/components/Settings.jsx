@@ -58,7 +58,7 @@ const Settings = () => {
   return (
     <Drawer.Root>
       <Drawer.Trigger asChild>
-        <button className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl p-2 text-md font-semibold text-violet-500 hover:bg-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+        <button className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl p-2 text-md font-semibold text-indigo-500 hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
           <Cog8ToothIcon className="size-5 text-gray-800 dark:text-gray-200" />
         </button>
       </Drawer.Trigger>
@@ -82,7 +82,7 @@ const Settings = () => {
                     <Switch
                       checked={theme === "dark"}
                       onChange={handleThemeToggle}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-violet-600"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-600"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -95,7 +95,7 @@ const Settings = () => {
                       disabled
                       checked={enabled2}
                       onChange={setEnabled2}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-violet-600"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-600"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -106,7 +106,7 @@ const Settings = () => {
                     </span>
                     <select
                       disabled
-                      className="bg-gray-100 text-gray-700 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+                      className="bg-gray-100 text-gray-700 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       <option>English</option>
                       <option>Spanish</option>
@@ -129,7 +129,7 @@ const Settings = () => {
                       disabled
                       checked={enabled3}
                       onChange={setEnabled3}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-violet-600"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-600"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -142,7 +142,7 @@ const Settings = () => {
                       disabled
                       checked={enabled4}
                       onChange={setEnabled4}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-violet-600"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-white transition data-[checked]:bg-indigo-600"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-gray-200 transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -156,7 +156,7 @@ const Settings = () => {
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between"></div>
                   <div className="flex items-center justify-between">
-                    <button className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-violet-500 px-3.5 py-2.5 text-sm font-semibold text-violet-500 shadow-sm hover:bg-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                    <button className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                       <span className="">Change Password</span>
                     </button>
                   </div>

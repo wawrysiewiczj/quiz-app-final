@@ -38,7 +38,7 @@ const ViewAllCompletedQuizzes = () => {
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
       <Drawer.Trigger asChild>
-        <button className="font-bold text-sm text-violet-500">View all</button>
+        <button className="font-bold text-sm text-indigo-500">View all</button>
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />

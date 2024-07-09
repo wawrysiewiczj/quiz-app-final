@@ -84,7 +84,7 @@ const Profile = () => {
             <Settings />
             <Link
               onClick={handleSignOut}
-              className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl p-2 text-md font-semibold hover:bg-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl p-2 text-md font-semibold hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
               <ArrowRightOnRectangleIcon className="size-5 " />
             </Link>
@@ -122,19 +122,19 @@ const Profile = () => {
                 >
                   <div className="grid grid-cols-3 gap-2 text-center">
                     <div>
-                      <h4 className="text-2xl font-bold text-violet-500">
+                      <h4 className="text-2xl font-bold text-indigo-500">
                         {totalQuizzesTaken}
                       </h4>
                       <p className="text-sm">Quizzes Taken</p>
                     </div>
                     <div>
-                      <h4 className="text-2xl font-bold text-violet-500">
+                      <h4 className="text-2xl font-bold text-indigo-500">
                         {averageScore.toFixed(0)}%
                       </h4>
                       <p className="text-sm">Average Score</p>
                     </div>
                     <div>
-                      <h4 className="text-2xl font-bold text-violet-500">0</h4>
+                      <h4 className="text-2xl font-bold text-indigo-500">0</h4>
                       <p className="text-sm">Quizzes Created</p>
                     </div>
                   </div>
@@ -186,7 +186,7 @@ const Profile = () => {
                   <li className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">
-                        <span className="rounded-xl bg-violet-300 dark:bg-violet-800 p-3 bg-opacity-70">
+                        <span className="rounded-xl bg-indigo-300 dark:bg-indigo-800 p-3 bg-opacity-70">
                           <AcademicCapIcon className="h-6 w-6" />
                         </span>
                       </div>
@@ -219,7 +219,7 @@ const Profile = () => {
             <h3 className="font-bold text-md text-gray-600 dark:text-gray-300">
               My Quizzes
             </h3>
-            <button className="font-bold text-sm text-violet-500">
+            <button className="font-bold text-sm text-indigo-500">
               View all
             </button>
           </div>
@@ -232,7 +232,7 @@ const Profile = () => {
                 <li className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">
-                      <span className="rounded-xl bg-violet-300 dark:bg-violet-800 p-3 bg-opacity-70">
+                      <span className="rounded-xl bg-indigo-300 dark:bg-indigo-800 p-3 bg-opacity-70">
                         <AcademicCapIcon className="h-6 w-6" />
                       </span>
                     </div>

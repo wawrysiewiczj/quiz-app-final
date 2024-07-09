@@ -53,7 +53,7 @@ const Ranking = () => {
           onClick={() => setActiveTab("weekly")}
           className={`animate duration-200 w-full px-4 py-1 font-semibold rounded-2xl ${
             activeTab === "weekly"
-              ? "bg-violet-200 text-violet-800"
+              ? "bg-indigo-200 text-indigo-800"
               : "bg-transparent"
           }`}
         >
@@ -63,7 +63,7 @@ const Ranking = () => {
           onClick={() => setActiveTab("all-time")}
           className={`animate duration-200 w-full px-4 py-1 font-semibold rounded-2xl ${
             activeTab === "all-time"
-              ? "bg-violet-200 text-violet-800"
+              ? "bg-indigo-200 text-indigo-800"
               : "bg-transparent "
           }`}
         >

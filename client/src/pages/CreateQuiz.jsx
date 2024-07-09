@@ -130,7 +130,7 @@ const CreateQuiz = () => {
           placeholder="Quiz Title"
           value={formData.title}
           onChange={handleTitleChange}
-          className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
+          className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
         />
 
         <div className="flex flex-col gap-2 mb-4">
@@ -145,7 +145,7 @@ const CreateQuiz = () => {
             name="category"
             value={formData.category}
             onChange={handleCategoryChange}
-            className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
+            className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
           >
             <option value="">Select Category</option>
             {categories.map((category) => (
@@ -174,7 +174,7 @@ const CreateQuiz = () => {
                 name="content"
                 value={question.content}
                 onChange={(e) => handleQuestionChange(questionIndex, e)}
-                className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
+                className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                 placeholder={`Enter question ${questionIndex + 1}`}
               />
             </div>
@@ -196,7 +196,7 @@ const CreateQuiz = () => {
                   onChange={(e) =>
                     handleAnswerChange(questionIndex, answerIndex, e)
                   }
-                  className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
+                  className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                   placeholder={`Enter answer ${answerIndex + 1}`}
                 />
               ))}
@@ -213,7 +213,7 @@ const CreateQuiz = () => {
               name={`correctAnswer-${questionIndex}`}
               value={question.correctAnswerIndex}
               onChange={(e) => handleCorrectAnswerChange(questionIndex, e)}
-              className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600"
+              className="flex-1 bg-white placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
             >
               {question.answers.map((answer, answerIndex) => (
                 <option key={answerIndex} value={answerIndex}>{`Answer ${
@@ -228,13 +228,13 @@ const CreateQuiz = () => {
           <button
             type="button"
             onClick={handleAddQuestion}
-            className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-violet-500 px-3.5 py-2.5 text-md font-semibold text-violet-500 shadow-sm hover:bg-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
           >
             Add Question
           </button>
           <button
             type="submit"
-            className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-violet-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
           >
             Create Quiz
           </button>

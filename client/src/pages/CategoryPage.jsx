@@ -95,7 +95,7 @@ const CategoryPage = () => {
               <li className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">
-                    <span className="rounded-xl bg-violet-300 dark:bg-violet-800 p-3 bg-opacity-70">
+                    <span className="rounded-xl bg-indigo-300 dark:bg-indigo-800 p-3 bg-opacity-70">
                       <AcademicCapIcon className="h-6 w-6" />
                     </span>
                   </div>
@@ -108,7 +108,7 @@ const CategoryPage = () => {
                     </p>
                   </div>
                 </div>
-                <span className="pr-1.5 pl-2 py-2 w-8 h-8 rounded-full text-violet-800 bg-violet-300 dark:bg-violet-800 flex justify-center items-center">
+                <span className="pr-1.5 pl-2 py-2 w-8 h-8 rounded-full text-indigo-800 bg-indigo-300 dark:bg-indigo-800 flex justify-center items-center">
                   <PlayIcon className="size-4 text-gray-100" />
                 </span>
               </li>

@@ -37,20 +37,20 @@ const NavbarBottom = () => {
             <div key={index} className="group">
               <Link
                 to={item.to}
-                className={`flex items-end justify-center text-center mx-auto w-full rounded-xl group-hover:text-violet-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${
-                  isActive ? "text-violet-600" : ""
+                className={`flex items-end justify-center text-center mx-auto w-full rounded-xl group-hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${
+                  isActive ? "text-indigo-600" : ""
                 }`}
               >
                 <span className="block px-1 py-1">
                   <span className="sr-only block text-xs">{item.label}</span>
                   <item.icon
                     className={`size-6 pt-1 mb-1 ${
-                      isActive ? "text-violet-600" : ""
+                      isActive ? "text-indigo-600" : ""
                     }`}
                   />
                   <span
                     className={`animate duration-300 block w-5 mx-auto h-1 ${
-                      isActive ? "bg-violet-600" : ""
+                      isActive ? "bg-indigo-600" : ""
                     } rounded-full`}
                   ></span>
                 </span>

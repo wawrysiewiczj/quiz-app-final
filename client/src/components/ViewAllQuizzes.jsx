@@ -46,7 +46,7 @@ const ViewAllCompletedQuizzes = () => {
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
       <Drawer.Trigger asChild>
-        <button className="font-bold text-sm text-violet-500">View all</button>
+        <button className="font-bold text-sm text-indigo-500">View all</button>
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
@@ -82,7 +82,7 @@ const ViewAllCompletedQuizzes = () => {
                               {quiz.categoryId.name}
                             </p>
                           </div>
-                          <span className="pr-1.5 pl-2 py-2 w-8 h-8 rounded-full text-violet-800 bg-violet-300 dark:bg-violet-800 flex justify-center items-center">
+                          <span className="pr-1.5 pl-2 py-2 w-8 h-8 rounded-full text-indigo-800 bg-indigo-300 dark:bg-indigo-800 flex justify-center items-center">
                             <PlayIcon className="h-6 w-6" />
                           </span>
                         </li>
