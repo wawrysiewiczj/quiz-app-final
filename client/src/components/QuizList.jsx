@@ -43,7 +43,7 @@ const QuizList = () => {
         <h3 className="font-bold text-md text-gray-600 dark:text-gray-300">
           Popular by Quiz
         </h3>
-        <ViewAllQuizzes />
+        <ViewAllQuizzes quizzes={quizzes} />
       </div>
       {quizzes.length === 0 ? (
         <p>No quizzes available</p>
@@ -71,8 +71,8 @@ const QuizList = () => {
                     </p>
                   </div>
                 </div>
-                <span className="pr-1.5 pl-2 py-2 w-8 h-8 rounded-full text-indigo-800 bg-indigo-300 dark:bg-indigo-800 flex justify-center items-center">
-                  <PlayIcon className="size-4 text-gray-100" />
+                <span className="pr-1.5 pl-2 py-2 rounded-full  bg-indigo-500 flex justify-center items-center">
+                  <PlayIcon className="size-6 text-gray-100" />
                 </span>
               </li>
             </Link>

@@ -2,18 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
-import {
-  AcademicCapIcon,
-  PlusIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import Animation from "../components/Animation";
 import QuizList from "../components/QuizList";
 import CategoryList from "../components/CategoryList";
-import { Field, Fieldset, Input, Label, Select } from "@headlessui/react";
+import { Field, Fieldset, Input } from "@headlessui/react";
 import clsx from "clsx";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);

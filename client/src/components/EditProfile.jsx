@@ -123,7 +123,7 @@ const EditProfile = () => {
     <Drawer.Root open={open} onOpenChange={setOpen}>
       <Drawer.Trigger asChild>
         <button className="rounded-full animate duration-200 w-full flex justify-center items-center gap-x-1 p-2 text-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-          <PencilSquareIcon className="size-5" />
+          <PencilSquareIcon className="size-6" />
         </button>
       </Drawer.Trigger>
       <Drawer.Portal>
@@ -135,13 +135,13 @@ const EditProfile = () => {
               <Drawer.Title className="font-medium text-center">
                 Edit profile
               </Drawer.Title>
-              <div>
+              <div className="mt-4">
                 <form
                   onSubmit={(handleSubmit) => {
                     wait().then(() => setOpen(false));
                     handleSubmit.preventDefault();
                   }}
-                  className="w-full flex flex-col gap-2 mt-4 "
+                  className="w-full flex flex-col gap-2"
                 >
                   <div
                     className={`w-full py-4 border-dashed border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center ${

@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-  Description,
-  Field,
-  Label,
-  Select,
-  Input,
-  Textarea,
-} from "@headlessui/react";
+import { Field, Label, Select, Input, Textarea } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import Animation from "./Animation";
+import { toast } from "react-toastify";
 
 const AddQuiz = () => {
   const navigate = useNavigate();
@@ -80,7 +74,7 @@ const AddQuiz = () => {
       title,
       description,
       categoryId: categoryId || null,
-      authorId: currentUser._id,
+      userId: currentUser._id,
       questions,
     };
 
@@ -97,6 +91,7 @@ const AddQuiz = () => {
 
       if (res.ok) {
         const data = await res.json();
+        toast.success("Quiz created successfully");
         navigate(`/quiz/${data.slug}`);
       } else {
         const errorData = await res.json();
@@ -188,14 +183,16 @@ const AddQuiz = () => {
                 </div>
               </Field>
             </div>
-            <div className="flex gap-2 mt-4">
-              <button
-                type="button"
-                onClick={() => setCurrentStep(2)} // Move to the first question step
-                className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
-                Start creating
-              </button>
+            <div className="w-full fixed bottom-20 left-0">
+              <div className="flex flex-col gap-4 justify-around max-w-3xl mx-auto px-4">
+                <button
+                  type="button"
+                  onClick={() => setCurrentStep(2)} // Move to the first question step
+                  className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                >
+                  Start creating
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -299,20 +296,22 @@ const AddQuiz = () => {
                 </div>
               </Field>
             </div>
-            <div className="flex gap-2 mt-4">
-              <button
-                type="button"
-                onClick={handleNext}
-                className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
-                Add Question
-              </button>
-              <button
-                className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                type="submit"
-              >
-                Save Quiz
-              </button>
+            <div className="w-full fixed bottom-20 left-0">
+              <div className="flex gap-2 justify-around max-w-3xl mx-auto px-4">
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                >
+                  Add Question
+                </button>
+                <button
+                  className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                  type="submit"
+                >
+                  Save Quiz
+                </button>
+              </div>
             </div>
           </div>
         )}

@@ -10,29 +10,11 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 
-const ViewAllCompletedQuizzes = () => {
+const ViewAllCompletedQuizzes = ({ completedQuizzes }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
-  const [completedQuizzes, setCompletedQuizzes] = useState([]);
   const [open, setOpen] = React.useState(false);
-
-  useEffect(() => {
-    const fetchCompletedQuizzes = async () => {
-      try {
-        const response = await fetch(`/api/result/user/${currentUser._id}`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setCompletedQuizzes(data);
-      } catch (error) {
-        console.error("Error fetching completed quizzes:", error);
-      }
-    };
-
-    fetchCompletedQuizzes();
-  }, [currentUser]);
 
   const getClassForScore = (score) => {
     if (score >= 70) {

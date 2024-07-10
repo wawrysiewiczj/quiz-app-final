@@ -1,47 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { toast } from "react-toastify";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Drawer } from "vaul";
-import {
-  AcademicCapIcon,
-  ArrowRightOnRectangleIcon,
-  PlayIcon,
-  TrashIcon,
-} from "@heroicons/react/24/outline";
+import { AcademicCapIcon, PlayIcon } from "@heroicons/react/24/outline";
 
-const ViewAllCompletedQuizzes = () => {
-  const [quizzes, setQuizzes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const ViewAllCompletedQuizzes = ({ quizzes }) => {
   const [open, setOpen] = React.useState(false);
-
-  useEffect(() => {
-    const fetchQuizzes = async () => {
-      try {
-        const res = await fetch("/api/quiz/get");
-        if (!res.ok) {
-          throw new Error("Failed to fetch quizzes");
-        }
-        const data = await res.json();
-        setQuizzes(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchQuizzes();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>

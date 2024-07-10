@@ -58,8 +58,8 @@ const Settings = () => {
   return (
     <Drawer.Root>
       <Drawer.Trigger asChild>
-        <button className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl p-2 text-md font-semibold text-indigo-500 hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-          <Cog8ToothIcon className="size-5 text-gray-800 dark:text-gray-200" />
+        <button className="rounded-full animate duration-200 w-full flex justify-center items-center gap-x-1 p-2 text-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+          <Cog8ToothIcon className="size-6 text-gray-800 dark:text-gray-200" />
         </button>
       </Drawer.Trigger>
       <Drawer.Portal>

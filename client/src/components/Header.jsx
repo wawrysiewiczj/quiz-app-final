@@ -44,8 +44,8 @@ const Header = () => {
     <div className="w-full py-1.5 flex flex-col justify-between items-center max-w-3xl mx-auto">
       <div className="w-full py-1.5 flex justify-between items-center max-w-3xl mx-auto">
         {currentUser ? (
-          <Link to="/" className={`${headerIconClassName}`}>
-            <ChevronLeftIcon className="size-5 text-gray-800 dark:text-gray-200" />
+          <Link to="/home" className={`${headerIconClassName}`}>
+            <ChevronLeftIcon className="size-6 text-gray-800 dark:text-gray-200" />
           </Link>
         ) : (
           <div className={headerIconClassName} />

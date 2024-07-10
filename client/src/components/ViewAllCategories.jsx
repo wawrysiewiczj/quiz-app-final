@@ -1,39 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { signOut } from "../redux/user/userSlice";
-import { toast } from "react-toastify";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Drawer } from "vaul";
-import {
-  AcademicCapIcon,
-  ArrowRightOnRectangleIcon,
-  TrashIcon,
-} from "@heroicons/react/24/outline";
 
-const ViewAllCompletedQuizzes = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [categories, setCategories] = useState([]);
+const ViewAllCompletedQuizzes = ({ categories }) => {
   const [open, setOpen] = React.useState(false);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch(`/api/category/get`);
-        if (!res.ok) {
-          throw new Error("Failed to fetch categories");
-        }
-        const data = await res.json();
-        setCategories(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
 
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>

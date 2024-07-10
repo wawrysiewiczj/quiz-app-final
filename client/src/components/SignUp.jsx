@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import OAuth from "./OAuth";
 import { Drawer } from "vaul";
@@ -57,8 +57,8 @@ const SignUp = () => {
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-        <Drawer.Content className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col rounded-t-[10px] fixed bottom-0 left-0 right-0">
-          <div className="p-4 bg-gray-100 dark:bg-gray-900  rounded-t-[10px] flex-1 pb-24 overflow-auto">
+        <Drawer.Content className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col rounded-t-3xl fixed bottom-0 left-0 right-0 max-h-[80%]">
+          <div className="p-4 bg-gray-100 dark:bg-gray-900 rounded-t-3xl flex-1 pb-24 overflow-auto">
             <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
             <div className="max-w-md mx-auto">
               <Drawer.Title className="font-medium text-center">

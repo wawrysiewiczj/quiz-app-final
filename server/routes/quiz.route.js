@@ -6,6 +6,7 @@ import {
   getQuizBySlug,
   getQuizStatistics,
   getQuizzesByCategory,
+  getQuizzesByUser,
 } from "../controllers/quiz.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
@@ -19,6 +20,8 @@ router.get("/get/:slug", verifyToken, getQuizBySlug);
 router.post("/finish", verifyToken, finishQuiz);
 
 router.get("/get", getAllQuizzes);
+
+router.get("/user/:userId", getQuizzesByUser);
 
 router.get("/category/:slug", getQuizzesByCategory);
 

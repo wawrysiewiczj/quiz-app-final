@@ -77,7 +77,6 @@ const QuizPage = () => {
       }
 
       const data = await res.json();
-      console.log("Quiz submitted successfully. Score: ", data.score);
       setResult(data);
     } catch (error) {
       console.error("Error submitting quiz:", error.message);
@@ -169,7 +168,7 @@ const QuizPage = () => {
               </Link>
               <Link
                 className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                to=""
+                to="/category"
               >
                 More quizzes
               </Link>
@@ -206,13 +205,13 @@ const QuizPage = () => {
               <Radio
                 key={aIndex}
                 value={aIndex}
-                className="group relative flex cursor-pointer rounded-lg bg-black/10 py-4 px-5  shadow-md transition focus:outline-none"
+                className="group relative flex cursor-pointer rounded-lg bg-black/10 py-4 px-5 shadow-md transition focus:outline-none "
               >
                 {({ checked }) => (
                   <div className="flex w-full items-center justify-between">
-                    <p className="">{answer.content}</p>
+                    <p className="text-lg font-semibold">{answer.content}</p>
                     {checked && (
-                      <CheckCircleIcon className="w-6 h-6  opacity-100" />
+                      <CheckCircleIcon className="size-7 opacity-100 text-indigo-500" />
                     )}
                   </div>
                 )}

@@ -3,6 +3,7 @@ import { AcademicCapIcon, PlayIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
 import ViewAllCategories from "./ViewAllCategories";
+import LoadingAnimation from "./LoadingAnimation";
 
 const QuizList = () => {
   const [loading, setLoading] = useState(true);
@@ -29,7 +30,7 @@ const QuizList = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingAnimation />;
   }
 
   if (error) {
@@ -42,7 +43,7 @@ const QuizList = () => {
         <h3 className="font-bold text-md text-gray-600 dark:text-gray-300 ">
           Popular by category
         </h3>
-        <ViewAllCategories />
+        <ViewAllCategories categories={categories} />
       </div>
       {categories.length === 0 ? (
         <p>No categories available</p>

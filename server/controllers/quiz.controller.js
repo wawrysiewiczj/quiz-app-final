@@ -15,6 +15,28 @@ export const getAllQuizzes = async (req, res) => {
   }
 };
 
+// Pobierz quizy po użytkowniku
+export const getQuizzesByUser = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const quizzes = await Quiz.find({ userId: userId }).populate(
+      "categoryId",
+      "name"
+    );
+
+    if (quizzes.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No quizzes found for this user" });
+    }
+
+    res.json(quizzes);
+  } catch (error) {
+    console.error("Error fetching quizzes by user:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Pobierz quiz po slug z pytaniami i odpowiedziami
 export const getQuizBySlug = async (req, res) => {
   try {
@@ -64,11 +86,9 @@ export const getQuizStatistics = async (req, res) => {
 
 // Utwórz nowy quiz
 export const createQuiz = async (req, res) => {
-  const { title, description, categoryId, authorId, questions } = req.body;
+  const { title, description, categoryId, userId, questions } = req.body;
 
   try {
-    console.log("Rozpoczynam tworzenie quizu");
-
     const slug = title
       .split(" ")
       .join("-")
@@ -80,18 +100,16 @@ export const createQuiz = async (req, res) => {
       title,
       description,
       categoryId,
-      authorId,
+      userId,
       slug,
       questions: [],
     });
 
     const savedQuiz = await quiz.save();
-    console.log(`Quiz zapisany: ${savedQuiz._id}`);
 
     // Update quizId in questions and save questions
     const savedQuestions = await Promise.all(
       questions.map(async (q) => {
-        console.log(`Tworzenie pytania: ${q.content}`);
         const question = new Question({
           content: q.content,
           correctAnswerIndex: q.correctAnswerIndex,
@@ -99,11 +117,9 @@ export const createQuiz = async (req, res) => {
         });
 
         const savedQuestion = await question.save();
-        console.log(`Pytanie zapisane: ${savedQuestion._id}`);
 
         const savedAnswers = await Promise.all(
           q.answers.map(async (a, index) => {
-            console.log(`Tworzenie odpowiedzi: ${a}`);
             const answer = new Answer({
               content: a,
               index,
@@ -111,7 +127,6 @@ export const createQuiz = async (req, res) => {
             });
 
             const savedAnswer = await answer.save();
-            console.log(`Odpowiedź zapisana: ${savedAnswer._id}`);
 
             return savedAnswer;
           })
@@ -119,9 +134,6 @@ export const createQuiz = async (req, res) => {
 
         savedQuestion.answers = savedAnswers.map((a) => a._id);
         await savedQuestion.save();
-        console.log(
-          `Pytanie zaktualizowane z odpowiedziami: ${savedQuestion._id}`
-        );
 
         return savedQuestion._id;
       })
