@@ -7,7 +7,7 @@ export const getAllLeaderboardEntries = async (req, res) => {
   try {
     // Pobierz wszystkie wpisy z leaderboard, posortowane malejąco wg totalPoints
     const leaderboardEntries = await Leaderboard.find()
-      .populate("userId", "username")
+      .populate("userId", "username profilePhoto")
       .sort({ totalPoints: -1 });
 
     // Oblicz rank dla każdego użytkownika
@@ -35,7 +35,7 @@ export const getWeeklyLeaderboardEntries = async (req, res) => {
         $lte: endOfWeek,
       },
     })
-      .populate("userId", "username")
+      .populate("userId", "username profilePhoto")
       .sort({ totalPoints: -1 });
 
     res.status(200).json(leaderboardEntries);
@@ -51,7 +51,7 @@ export const getLeaderboardEntryByUserId = async (req, res) => {
   try {
     const leaderboardEntry = await Leaderboard.findOne({ userId }).populate(
       "userId",
-      "username"
+      "username profilePhoto"
     );
 
     if (!leaderboardEntry) {

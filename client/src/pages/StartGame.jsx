@@ -1,108 +1,82 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import Animation from "../components/Animation";
-import Categories from "../components/Categories";
-import UserQuizzes from "../components/UserQuizzes";
-import {
-  AcademicCapIcon,
-  PlusIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
+import React, { useState, useEffect } from "react";
+import { AcademicCapIcon, PlayIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
-const StartGame = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [createError, setCreateError] = useState(null);
+import ViewAllCategories from "../components/ViewAllCategories";
+import LoadingAnimation from "../components/LoadingAnimation";
+
+const QuizList = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [categories, setCategories] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState("categories");
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get("searchTerm");
-    if (searchTermFromUrl) {
-      setSearchTerm(searchTermFromUrl);
-    }
-  }, [location.search]);
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch(`/api/category/get`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch categories");
+        }
+        const data = await res.json();
+        setCategories(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const urlParams = new URLSearchParams(location.search);
-    urlParams.set("searchTerm", searchTerm);
-    const searchQuery = urlParams.toString();
-    navigate(`/search?${searchQuery}`);
-  };
+    fetchCategories();
+  }, []);
 
-  const TabButton = ({ isActive, onClick, children }) => (
-    <button
-      onClick={onClick}
-      className={`animate duration-200 w-full px-4 py-1 font-semibold rounded-2xl ${
-        isActive
-          ? "bg-indigo-200 text-indigo-800 dark:bg-indigo-800 dark:text-gray-100"
-          : "bg-transparent"
-      }`}
-    >
-      {children}
-    </button>
-  );
+  if (loading) {
+    return <LoadingAnimation />;
+  }
 
-  // const renderContent = () => {
-  //   if (activeTab === "categories") {
-  //     return <Categories />;
-  //   }
-  //   if (activeTab === "userQuizzes") {
-  //     return <UserQuizzes />;
-  //   }
-  //   return null;
-  // };
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
-    <Animation>
-      {/* <div className="mb-4 p-1 mx-auto flex justify-center bg-gray-100 dark:bg-gray-900 rounded-full">
-        <TabButton
-          isActive={activeTab === "categories"}
-          onClick={() => setActiveTab("categories")}
-        >
-          Categories
-        </TabButton>
-        <TabButton
-          isActive={activeTab === "userQuizzes"}
-          onClick={() => setActiveTab("userQuizzes")}
-        >
-          User Quizzes
-        </TabButton>
-      </div> */}
-
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-3xl mx-auto w-full flex gap-2 mb-4"
-      >
-        <label
-          htmlFor="name"
-          className="sr-only block text-gray-700 text-sm font-bold"
-        >
-          Search
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 bg-black placeholder:text-sm placeholder:text-gray-500 text-gray-800 border-none px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        />
-
-        <button className="flex justify-center items-center bg-indigo-500 text-white px-3.5 py-2.5 rounded-xl shadow hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          <MagnifyingGlassIcon className="w-5 h-5 inline" />
-        </button>
-      </form>
-
-      {/* <div className="mb-4 flex flex-col gap-2">{renderContent()}</div> */}
-
-      <UserQuizzes />
-    </Animation>
+    <div className="mt-4">
+      <div className="mb-2 flex items-center justify-between">
+        <h3 className="font-bold text-md text-gray-600 dark:text-gray-300 ">
+          Popular by category
+        </h3>
+        <ViewAllCategories categories={categories} />
+      </div>
+      {categories.length === 0 ? (
+        <p>No categories available</p>
+      ) : (
+        <ul className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+          {categories.map((category) => (
+            <Link
+              key={category._id}
+              to={`/category/${category.slug}`}
+              className="animate duration-300 col-span-2 sm:grid-col-4 bg-black/5 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5"
+            >
+              <li className="flex flex-col h-full justify-between">
+                <div className="flex flex-col justify-between h-full">
+                  <h2 className="text-md font-semibold overflow-hidden overflow-ellipsis">
+                    {category && category.name}
+                  </h2>
+                  <div>
+                    <p className="mt-2 text-xs">You Completed 40% </p>
+                    <div className="w-full h-1 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden mt-1 mb-1">
+                      <div
+                        className="h-full bg-indigo-500"
+                        style={{ width: `40%` }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </Link>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 
-export default StartGame;
+export default QuizList;

@@ -46,6 +46,68 @@ const Ranking = () => {
     return <p>Error fetching leaderboard: {error}</p>;
   }
 
+  const renderPodium = (leaderboard) => {
+    const podiumOrder = [1, 0, 2];
+    const podiumHeights = ["80px", "100px", "60px"];
+    const podiumColors = ["bg-gray-400", "bg-yellow-500", "bg-yellow-800"];
+    return (
+      <div className="flex justify-center gap-2 mb-6 items-end">
+        {podiumOrder.map((position, index) => (
+          <div key={leaderboard[position]._id} className="w-full mt-2">
+            <div className="flex flex-col items-center">
+              {index === 1 ? "👑" : ""}
+              {leaderboard[position].userId.profilePhoto ? (
+                <img
+                  src={leaderboard[position].userId.profilePhoto}
+                  alt="Profile"
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-12 h-12 rounded-full bg-gray-300"></div>
+              )}
+              <span className="text-sm font-semibold">
+                {leaderboard[position].userId.username}
+              </span>
+              <span className="text-sm">
+                {leaderboard[position].totalPoints.toFixed(1)} pts
+              </span>
+            </div>
+            <div
+              className={`flex flex-col items-center justify-center w-full mx-1 p-2 rounded-t-lg ${podiumColors[index]}`}
+              style={{ height: podiumHeights[index] }}
+            >
+              <span className="text-3xl font-bold">{position + 1}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderLeaderboardEntries = (leaderboard) => {
+    return leaderboard.slice(3).map((entry, index) => (
+      <div
+        key={entry._id}
+        className="flex col-span-4 gap-2 items-center justify-between p-3 rounded-md"
+      >
+        <div className="flex items-center gap-4">
+          <span className="text-lg font-semibold">{index + 4}</span>
+          {entry.userId.profilePhoto ? (
+            <img
+              src={entry.userId.profilePhoto}
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+          )}
+          <span className="text-md">{entry.userId.username}</span>
+        </div>
+        <span className="text-sm">{entry.totalPoints.toFixed(1)} pts</span>
+      </div>
+    ));
+  };
+
   return (
     <Animation>
       <div className="col-span-4 flex flex-col gap-2">
@@ -55,13 +117,13 @@ const Ranking = () => {
             <TabList className="rounded-xl flex w-full justify-between gap-4 p-1">
               <Tab
                 key="weekly"
-                className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                className="rounded-lg w-full py-1 px-3 text-sm font-semibold focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
               >
                 Weekly
               </Tab>
               <Tab
                 key="alltime"
-                className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                className="rounded-lg w-full py-1 px-3 text-sm font-semibold focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
               >
                 All-time
               </Tab>
@@ -69,41 +131,19 @@ const Ranking = () => {
             <TabPanels>
               <TabPanel key="weekly" className="p-3">
                 <div className="leaderboard">
+                  {weeklyLeaderboard.length >= 3 &&
+                    renderPodium(weeklyLeaderboard)}
                   <div className="grid grid-cols-4 gap-2">
-                    {weeklyLeaderboard.map((entry, index) => (
-                      <div
-                        key={entry._id}
-                        className="flex col-span-4 l gap-2 items-center justify-between p-3 rounded-md"
-                      >
-                        <span className="text-lg font-semibold">
-                          {index + 1}
-                        </span>
-                        <span className="text-lg">{entry.userId.username}</span>
-                        <span className="text-lg">
-                          {entry.totalPoints.toFixed(1)} points
-                        </span>
-                      </div>
-                    ))}
+                    {renderLeaderboardEntries(weeklyLeaderboard)}
                   </div>
                 </div>
               </TabPanel>
               <TabPanel key="alltime" className="p-3">
                 <div className="leaderboard">
+                  {allTimeLeaderboard.length >= 3 &&
+                    renderPodium(allTimeLeaderboard)}
                   <div className="grid grid-cols-4 gap-2">
-                    {allTimeLeaderboard.map((entry, index) => (
-                      <div
-                        key={entry._id}
-                        className="flex col-span-4 l gap-2 items-center justify-between p-3 rounded-md"
-                      >
-                        <span className="text-lg font-semibold">
-                          {index + 1}
-                        </span>
-                        <span className="text-lg">{entry.userId.username}</span>
-                        <span className="text-lg">
-                          {entry.totalPoints.toFixed(1)} points
-                        </span>
-                      </div>
-                    ))}
+                    {renderLeaderboardEntries(allTimeLeaderboard)}
                   </div>
                 </div>
               </TabPanel>

@@ -29,6 +29,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchCompletedQuizzes = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`/api/result/user/${currentUser._id}`);
         if (!response.ok) {
@@ -48,6 +49,7 @@ const Profile = () => {
     };
 
     const fetchUserQuizzes = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`/api/quiz/user/${currentUser._id}`);
         if (!response.ok) {
@@ -62,10 +64,12 @@ const Profile = () => {
       } catch (error) {
         setError(true);
         setLoading(false);
+        console.error("Error fetching user quizzes:", error);
       }
     };
 
     const fetchLeaderboard = async () => {
+      setLoading(true);
       try {
         const response = await fetch("/api/leaderboard");
         if (!response.ok) {
@@ -93,12 +97,12 @@ const Profile = () => {
 
   useEffect(() => {
     if (leaderboard.length > 0 && completedQuizzes.length > 0) {
-      // Sortowanie leaderboard malejąco według totalPoints
+      // Sort leaderboard descending by totalPoints
       const sortedLeaderboard = [...leaderboard].sort(
         (a, b) => b.totalPoints - a.totalPoints
       );
 
-      // Znalezienie indeksu użytkownika w posortowanej tablicy
+      // Find user's entry in sorted leaderboard
       const userEntry = leaderboard.find(
         (entry) => entry.userId._id === currentUser._id
       );
@@ -107,24 +111,21 @@ const Profile = () => {
       );
 
       if (userEntry) {
-        // Ustaw punkty użytkownika
         setUserPoints(userEntry.totalPoints.toFixed(1));
       } else {
-        // Ustaw punkty na null, gdy użytkownik nie istnieje w rankingu
         setUserPoints(null);
       }
-      // Ustawienie rankingu użytkownika (dodajemy 1, bo indeksowanie zaczyna się od 0)
       setUserRank(userIndex !== -1 ? userIndex + 1 : null);
     }
   }, [leaderboard, completedQuizzes, currentUser]);
 
   const getClassForScore = (score) => {
     if (score >= 70) {
-      return "ring-green-400";
+      return "text-green-400";
     } else if (score >= 40) {
-      return "ring-yellow-400";
+      return "text-yellow-400";
     } else {
-      return "ring-red-400";
+      return "text-red-400";
     }
   };
 
@@ -139,7 +140,6 @@ const Profile = () => {
   };
 
   const totalUserQuizzes = userQuizzes.length;
-
   const totalQuizzesTaken = completedQuizzes.length;
   const averageScore =
     totalQuizzesTaken > 0
@@ -166,16 +166,12 @@ const Profile = () => {
               <span className="text-sm font-semibold rounded-xl bg-black/5 px-3 py-2">
                 Points
                 <span className=" text-indigo-400 ml-1">
-                  {userPoints !== null ? userPoints : "-"}{" "}
-                  {/* Wyświetlamy punkty lub "-" jeśli nie ma danych */}
+                  {userPoints !== null ? userPoints : "-"}
                 </span>
               </span>
               <span className="text-sm font-semibold rounded-xl bg-black/5 px-3 py-2">
                 Rank
-                <span className=" text-indigo-400 ml-1">
-                  {userRank || "-"}{" "}
-                  {/* Wyświetlamy userRank lub "-" jeśli nie ma danych */}
-                </span>
+                <span className=" text-indigo-400 ml-1">{userRank || "-"}</span>
               </span>
             </div>
           </div>
@@ -267,7 +263,11 @@ const Profile = () => {
             <ViewAllCompletedQuizzes completedQuizzes={completedQuizzes} />
           </div>
 
-          {completedQuizzes.length === 0 ? (
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p>Error fetching completed quizzes.</p>
+          ) : completedQuizzes.length === 0 ? (
             <p>No quizzes completed</p>
           ) : (
             <ul className="grid grid-cols-4 gap-2">
@@ -294,12 +294,12 @@ const Profile = () => {
                       </div>
                     </div>
 
-                    <div
-                      className={`p-3 rounded-full size-10 flex justify-center items-center ring ${getClassForScore(
-                        quizResult.score
-                      )}`}
-                    >
-                      <span className="text-xs">
+                    <div className="">
+                      <span
+                        className={`text-md font-semibold ${getClassForScore(
+                          quizResult.score
+                        )}`}
+                      >
                         {quizResult.score.toFixed(1)}%
                       </span>
                     </div>
@@ -319,7 +319,11 @@ const Profile = () => {
             <ViewAllCreatedQuizzes userQuizzes={userQuizzes} />
           </div>
           <div className="">
-            {userQuizzes.length === 0 ? (
+            {loading ? (
+              <p>Loading...</p>
+            ) : error ? (
+              <p>Error fetching user quizzes.</p>
+            ) : userQuizzes.length === 0 ? (
               <p>No quizzes created</p>
             ) : (
               <ul className="grid grid-cols-4 gap-2">

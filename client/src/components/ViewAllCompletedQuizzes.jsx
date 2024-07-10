@@ -70,7 +70,9 @@ const ViewAllCompletedQuizzes = ({ completedQuizzes }) => {
                               quizResult.score
                             )}`}
                           >
-                            <span className="text-sm">{quizResult.score}%</span>
+                            <span className="text-sm">
+                              {quizResult.score.toFixed(1)}%
+                            </span>
                           </div>
                         </li>
                       </Link>

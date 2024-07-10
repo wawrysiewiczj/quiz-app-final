@@ -7,12 +7,17 @@ import {
   Select,
   Input,
   Textarea,
-  Listbox,
+  ComboboxButton,
+  ComboboxInput,
+  Combobox,
+  ComboboxOptions,
+  ComboboxOption,
 } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import Animation from "./Animation";
 import { toast } from "react-toastify";
+import {} from "@heroicons/react/24/outline";
 
 const AddQuiz = () => {
   const navigate = useNavigate();
@@ -22,6 +27,8 @@ const AddQuiz = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState("");
+  const [query, setQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null); // Updated state to store selected category
   const [questions, setQuestions] = useState([
     { content: "", answers: ["", "", "", ""], correctAnswerIndex: [] },
   ]);
@@ -118,6 +125,24 @@ const AddQuiz = () => {
     setCurrentStep(currentStep - 1);
   };
 
+  const handleCategoryChange = (value) => {
+    setSelectedCategory(value); // Ustawienie wybranej kategorii
+    setQuery(""); // Wyczyszczenie pola wyszukiwania
+
+    if (value) {
+      setCategoryId(value._id); // Ustawienie categoryId na _id wybranej kategorii
+    } else {
+      setCategoryId(""); // Ustawienie categoryId na pusty string, jeśli value jest null
+    }
+  };
+
+  const filteredCategories =
+    query === ""
+      ? categories
+      : categories.filter((category) =>
+          category.name.toLowerCase().includes(query.toLowerCase())
+        );
+
   return (
     <Animation className="">
       <h2 className="text-2xl font-bold mb-4">Add New Quiz</h2>
@@ -164,58 +189,61 @@ const AddQuiz = () => {
                 <Label className="text-sm/6 font-medium text-gray-900 dark:text-gray-100">
                   Category
                 </Label>
-                <div className="relative">
-                  <Listbox value={categoryId} onChange={setCategoryId}>
-                    {({ open }) => (
-                      <>
-                        <Listbox.Button
-                          className={clsx(
-                            "appearance-none block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
-                            open ? "*:text-black" : ""
-                          )}
-                        >
-                          {categoryId
-                            ? categories.find((cat) => cat._id === categoryId)
-                                ?.name || "Select a category"
-                            : "Select a category"}
-                        </Listbox.Button>
-                        <Listbox.Options className="absolute z-10 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-1.5 text-sm/6">
-                          {categories.map((category) => (
-                            <Listbox.Option
-                              key={category._id}
-                              value={category._id}
-                              className={({ active }) =>
-                                clsx(
-                                  active
-                                    ? "bg-blue-600 text-white"
-                                    : "text-gray-900 dark:text-gray-100",
-                                  "cursor-pointer select-none relative py-2 pl-10 pr-4"
-                                )
+                <Combobox
+                  value={selectedCategory}
+                  onChange={(value) => handleCategoryChange(value)}
+                  onClose={() => setQuery("")}
+                >
+                  <div className="relative">
+                    <ComboboxInput
+                      className={clsx(
+                        "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                        "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                      )}
+                      value={selectedCategory ? selectedCategory.name : ""}
+                      onChange={(event) => setQuery(event.target.value)}
+                      placeholder="Select a category"
+                    />
+                    <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
+                      <ChevronDownIcon className="size-4 fill-white/60 group-data-[hover]:fill-white" />
+                    </ComboboxButton>
+                  </div>
+
+                  <ComboboxOptions
+                    className={clsx(
+                      "mt-1 w-[var(--input-width)] max-h-52 rounded-xl border border-white/5 bg-white/5 p-1 [--anchor-gap:var(--spacing-1)] empty:invisible",
+                      "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0 overflow-y-scroll"
+                    )}
+                  >
+                    {filteredCategories.map((category) => (
+                      <ComboboxOption
+                        key={category._id}
+                        value={category}
+                        className={({ active }) =>
+                          clsx(
+                            active
+                              ? "bg-blue-600 text-white"
+                              : "text-gray-900 dark:text-gray-100",
+                            "group flex cursor-default items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-white/10"
+                          )
+                        }
+                      >
+                        {({ selected }) => (
+                          <>
+                            <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" />
+                            <span
+                              className={
+                                selected ? "font-semibold" : "font-normal"
                               }
                             >
-                              {({ selected }) => (
-                                <>
-                                  <span
-                                    className={
-                                      selected ? "font-semibold" : "font-normal"
-                                    }
-                                  >
-                                    {category.name}
-                                  </span>
-                                </>
-                              )}
-                            </Listbox.Option>
-                          ))}
-                        </Listbox.Options>
-                      </>
-                    )}
-                  </Listbox>
-                  <ChevronDownIcon
-                    className="group pointer-events-none absolute top-3.5 right-2.5 size-4"
-                    aria-hidden="true"
-                  />
-                </div>
+                              {category.name}
+                            </span>
+                          </>
+                        )}
+                      </ComboboxOption>
+                    ))}
+                  </ComboboxOptions>
+                </Combobox>
               </Field>
             </div>
             <div className="w-full fixed bottom-20 left-0">

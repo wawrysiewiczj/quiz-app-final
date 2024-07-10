@@ -1,0 +1,55 @@
+.cube {
+  width: 300px; /* Adjust cube size as needed */
+  height: 300px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg) rotateY(-45deg);
+  transition: transform 0.5s;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+}
+
+.face.bg-blue-500 {
+  background-color: #3b82f6;
+}
+.face.bg-yellow-500 {
+  background-color: #f59e0b;
+}
+.face.bg-green-500 {
+  background-color: #10b981;
+}
+.face.bg-red-500 {
+  background-color: #ef4444;
+}
+.face.bg-purple-500 {
+  background-color: #8b5cf6;
+}
+.face.bg-pink-500 {
+  background-color: #ec4899;
+}
+
+.face:nth-child(1) {
+  transform: rotateY(0deg) translateZ(150px);
+}
+.face:nth-child(2) {
+  transform: rotateY(90deg) translateZ(150px);
+}
+.face:nth-child(3) {
+  transform: rotateY(180deg) translateZ(150px);
+}
+.face:nth-child(4) {
+  transform: rotateY(-90deg) translateZ(150px);
+}
+.face:nth-child(5) {
+  transform: rotateX(90deg) translateZ(150px);
+}
+.face:nth-child(6) {
+  transform: rotateX(-90deg) translateZ(150px);
+}

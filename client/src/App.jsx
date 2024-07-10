@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 // Import pages
 import Home from "./pages/Home";
@@ -12,12 +13,13 @@ import Profile from "./pages/Profile";
 import Header from "./components/Header";
 import NavbarBottom from "./components/NavbarBottom";
 import PrivateRoute from "./components/PrivateRoute";
-import { ToastContainer } from "react-toastify";
 import AddQuiz from "./components/AddQuiz";
 import QuizPage from "./pages/QuizPage";
+import Messages from "./pages/Messages";
 import CategoryPage from "./pages/CategoryPage";
 import NotFound from "./pages/NotFound";
 import Ranking from "./pages/Ranking";
+import StartGame from "./pages/StartGame";
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -55,6 +57,8 @@ export default function App() {
             <Route path="/quiz/:quizSlug" element={<QuizPage />} />
             <Route path="/category/:categorySlug" element={<CategoryPage />} />
             <Route path="/ranking" element={<Ranking />} />
+            <Route path="/start-game" element={<StartGame />} />
+            <Route path="/messages" element={<Messages />} />
           </Route>
         </Routes>
         <div

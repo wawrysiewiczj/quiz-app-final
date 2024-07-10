@@ -53,12 +53,12 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Trasy dla statycznych plików
-app.use(express.static(path.join(__dirname, "/client/dist")));
+// // Trasy dla statycznych plików
+// app.use(express.static(path.join(__dirname, "/client/dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+// });
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
