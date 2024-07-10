@@ -17,6 +17,7 @@ import AddQuiz from "./components/AddQuiz";
 import QuizPage from "./pages/QuizPage";
 import CategoryPage from "./pages/CategoryPage";
 import NotFound from "./pages/NotFound";
+import Ranking from "./pages/Ranking";
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -53,6 +54,7 @@ export default function App() {
             <Route path="/add-quiz" element={<AddQuiz />} />
             <Route path="/quiz/:quizSlug" element={<QuizPage />} />
             <Route path="/category/:categorySlug" element={<CategoryPage />} />
+            <Route path="/ranking" element={<Ranking />} />
           </Route>
         </Routes>
         <div

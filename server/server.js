@@ -8,6 +8,7 @@ import quizRoutes from "./routes/quiz.route.js";
 import categoryRoutes from "./routes/category.route.js";
 import conversationRoutes from "./routes/conversation.route.js";
 import notificationRoutes from "./routes/notification.route.js";
+import leaderboardRoutes from "./routes/leaderboard.route.js";
 import resultRoutes from "./routes/result.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -39,6 +40,7 @@ app.use("/api/category", categoryRoutes);
 app.use("/api/conversation", conversationRoutes);
 app.use("/api/notification", notificationRoutes);
 app.use("/api/result", resultRoutes);
+app.use("/api/leaderboard", leaderboardRoutes);
 
 // Obsługa błędów
 app.use((err, req, res, next) => {

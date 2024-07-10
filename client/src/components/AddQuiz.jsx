@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Field, Label, Select, Input, Textarea } from "@headlessui/react";
+import {
+  Field,
+  Label,
+  Select,
+  Input,
+  Textarea,
+  Listbox,
+} from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import Animation from "./Animation";
@@ -152,30 +159,58 @@ const AddQuiz = () => {
                 />
               </Field>
             </div>
-
             <div className="w-full mt-1">
               <Field>
                 <Label className="text-sm/6 font-medium text-gray-900 dark:text-gray-100">
                   Category
                 </Label>
                 <div className="relative">
-                  <Select
-                    onChange={(e) => setCategoryId(e.target.value)}
-                    value={categoryId}
-                    className={clsx(
-                      "appearance-none block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                      "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
-                      // Make the text of each option black on Windows
-                      "*:text-black"
+                  <Listbox value={categoryId} onChange={setCategoryId}>
+                    {({ open }) => (
+                      <>
+                        <Listbox.Button
+                          className={clsx(
+                            "appearance-none block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
+                            open ? "*:text-black" : ""
+                          )}
+                        >
+                          {categoryId
+                            ? categories.find((cat) => cat._id === categoryId)
+                                ?.name || "Select a category"
+                            : "Select a category"}
+                        </Listbox.Button>
+                        <Listbox.Options className="absolute z-10 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-1.5 text-sm/6">
+                          {categories.map((category) => (
+                            <Listbox.Option
+                              key={category._id}
+                              value={category._id}
+                              className={({ active }) =>
+                                clsx(
+                                  active
+                                    ? "bg-blue-600 text-white"
+                                    : "text-gray-900 dark:text-gray-100",
+                                  "cursor-pointer select-none relative py-2 pl-10 pr-4"
+                                )
+                              }
+                            >
+                              {({ selected }) => (
+                                <>
+                                  <span
+                                    className={
+                                      selected ? "font-semibold" : "font-normal"
+                                    }
+                                  >
+                                    {category.name}
+                                  </span>
+                                </>
+                              )}
+                            </Listbox.Option>
+                          ))}
+                        </Listbox.Options>
+                      </>
                     )}
-                  >
-                    <option value="">Select a category</option>
-                    {categories.map((category) => (
-                      <option key={category._id} value={category._id}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </Select>
+                  </Listbox>
                   <ChevronDownIcon
                     className="group pointer-events-none absolute top-3.5 right-2.5 size-4"
                     aria-hidden="true"

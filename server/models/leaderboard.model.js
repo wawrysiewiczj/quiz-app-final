@@ -2,23 +2,16 @@ import mongoose from "mongoose";
 
 const LeaderboardSchema = new mongoose.Schema(
   {
-    quizId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Quiz",
+      ref: "User",
+      required: true,
+      unique: true,
+    },
+    totalPoints: {
+      type: Number,
       required: true,
     },
-    topUsers: [
-      {
-        userId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-        score: {
-          type: Number,
-          required: true,
-        },
-      },
-    ],
     createdAt: {
       type: Date,
       default: Date.now,

@@ -3,6 +3,7 @@ import Question from "../models/question.model.js";
 import Result from "../models/result.model.js";
 import Answer from "../models/answers.model.js";
 import Category from "../models/category.model.js";
+import Leaderboard from "../models/leaderboard.model.js";
 import { errorHandler } from "../utils/error.js";
 
 // Pobierz wszystkie quizy
@@ -161,10 +162,9 @@ export const finishQuiz = async (req, res) => {
       return res.status(404).json({ message: "Quiz not found" });
     }
 
-    // Sprawdź, czy istnieje już wynik dla tego użytkownika i tego quizu
+    // Calculate score and update results
     let result = await Result.findOne({ userId, quizId });
 
-    // Oblicz wynik quizu na podstawie wybranych i poprawnych odpowiedzi
     let points = 0;
     const correctAnswers = [];
 
@@ -185,7 +185,7 @@ export const finishQuiz = async (req, res) => {
     const score = (points / quiz.questions.length) * 100;
 
     if (result) {
-      // Jeśli istnieje już wynik, zaktualizuj go
+      // Update existing result
       result.score = score;
       result.selectedAnswers = selectedAnswers.map((answer, index) => ({
         questionId: quiz.questions[index]._id,
@@ -193,7 +193,7 @@ export const finishQuiz = async (req, res) => {
       }));
       result.correctAnswers = correctAnswers;
     } else {
-      // Jeśli nie ma jeszcze wyniku, utwórz nowy obiekt wyniku
+      // Create new result
       result = new Result({
         userId,
         quizId,
@@ -202,25 +202,57 @@ export const finishQuiz = async (req, res) => {
           questionId: quiz.questions[index]._id,
           selectedAnswerIndex: answer,
         })),
-        correctAnswers: correctAnswers,
+        correctAnswers,
       });
     }
 
     const savedResult = await result.save();
 
-    // Update quiz popularity stats (optional)
-    await Quiz.findByIdAndUpdate(quiz._id, {
-      $inc: { "popularity.attempts": 1 },
-      $set: {
-        "popularity.averageScore":
-          (quiz.popularity.averageScore + score) /
-          (quiz.popularity.attempts + 1),
-      },
-    });
+    // Update quiz popularity stats
+    const totalAttempts = quiz.popularity.attempts + 1;
+    const averageScore =
+      (quiz.popularity.averageScore * quiz.popularity.attempts + score) /
+      totalAttempts;
 
-    res.status(201).json(savedResult);
-  } catch (err) {
-    console.error("Error saving quiz result:", err);
-    res.status(400).json({ message: err.message });
+    await Quiz.findByIdAndUpdate(
+      quiz._id,
+      {
+        $set: {
+          "popularity.attempts": totalAttempts,
+          "popularity.averageScore": averageScore,
+        },
+      },
+      { new: true }
+    );
+
+    // Update leaderboard
+    const leaderboardEntry = await updateLeaderboard(userId);
+
+    res.status(201).json({ savedResult, leaderboardEntry });
+  } catch (error) {
+    console.error("Error saving quiz result:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Aktualizacja punktów w leaderboard
+const updateLeaderboard = async (userId) => {
+  try {
+    // Pobierz wszystkie wyniki użytkownika
+    const results = await Result.find({ userId });
+
+    // Oblicz totalPoints
+    const totalPoints = results.reduce((acc, result) => acc + result.score, 0);
+
+    // Znajdź istniejący wpis na leaderboardzie lub utwórz nowy
+    const leaderboardEntry = await Leaderboard.findOneAndUpdate(
+      { userId },
+      { totalPoints },
+      { new: true, upsert: true }
+    );
+
+    return leaderboardEntry;
+  } catch (error) {
+    console.error("Error updating leaderboard:", error);
   }
 };

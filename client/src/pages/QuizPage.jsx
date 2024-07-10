@@ -77,7 +77,7 @@ const QuizPage = () => {
       }
 
       const data = await res.json();
-      setResult(data);
+      setResult(data.savedResult);
     } catch (error) {
       console.error("Error submitting quiz:", error.message);
       // Display error message to the user or handle error state
@@ -153,8 +153,8 @@ const QuizPage = () => {
             <h2 className="text-xl font-semibold mb-2">
               Congrats! You passed the quiz!
             </h2>
-            <p>Your score: {result.score}%</p>
-            <p>Your earn {result.score} Quizpoints</p>
+            <p>Your score: {result.score.toFixed(1)}%</p>
+            <p>Your earn {result.score.toFixed(1)} Quizpoints</p>
             {/* Możesz dodać inne statystyki, np. procent poprawnych odpowiedzi, czas wykonania quizu itp. */}
           </div>
           {/* Buttons */}

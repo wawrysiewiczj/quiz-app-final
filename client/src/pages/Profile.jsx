@@ -4,14 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "../redux/user/userSlice";
 import { toast } from "react-toastify";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
-
 import {
   AcademicCapIcon,
   ArrowRightOnRectangleIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-
-// import components
 import Animation from "../components/Animation";
 import EditProfile from "../components/EditProfile";
 import Settings from "../components/Settings";
@@ -26,6 +23,9 @@ const Profile = () => {
   const [error, setError] = useState(false);
   const [completedQuizzes, setCompletedQuizzes] = useState([]);
   const [userQuizzes, setUserQuizzes] = useState([]);
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [userRank, setUserRank] = useState(null);
+  const [userPoints, setUserPoints] = useState(null);
 
   useEffect(() => {
     const fetchCompletedQuizzes = async () => {
@@ -34,6 +34,7 @@ const Profile = () => {
         if (!response.ok) {
           setError(true);
           setLoading(false);
+          return;
         }
         const data = await response.json();
         setLoading(false);
@@ -42,19 +43,17 @@ const Profile = () => {
       } catch (error) {
         setError(true);
         setLoading(false);
+        console.error("Error fetching completed quizzes:", error);
       }
     };
 
-    fetchCompletedQuizzes();
-  }, [currentUser]);
-
-  useEffect(() => {
     const fetchUserQuizzes = async () => {
       try {
         const response = await fetch(`/api/quiz/user/${currentUser._id}`);
         if (!response.ok) {
           setError(true);
           setLoading(false);
+          return;
         }
         const data = await response.json();
         setLoading(false);
@@ -66,8 +65,58 @@ const Profile = () => {
       }
     };
 
-    fetchUserQuizzes();
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await fetch("/api/leaderboard");
+        if (!response.ok) {
+          setError(true);
+          setLoading(false);
+          return;
+        }
+        const data = await response.json();
+        setLoading(false);
+        setError(false);
+        setLeaderboard(data);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+        console.error("Error fetching leaderboard:", error);
+      }
+    };
+
+    if (currentUser?._id) {
+      fetchCompletedQuizzes();
+      fetchUserQuizzes();
+      fetchLeaderboard();
+    }
   }, [currentUser]);
+
+  useEffect(() => {
+    if (leaderboard.length > 0 && completedQuizzes.length > 0) {
+      // Sortowanie leaderboard malejąco według totalPoints
+      const sortedLeaderboard = [...leaderboard].sort(
+        (a, b) => b.totalPoints - a.totalPoints
+      );
+
+      // Znalezienie indeksu użytkownika w posortowanej tablicy
+      const userEntry = leaderboard.find(
+        (entry) => entry.userId._id === currentUser._id
+      );
+      const userIndex = sortedLeaderboard.findIndex(
+        (entry) => entry.userId._id === currentUser._id
+      );
+
+      if (userEntry) {
+        // Ustaw punkty użytkownika
+        setUserPoints(userEntry.totalPoints.toFixed(1));
+      } else {
+        // Ustaw punkty na null, gdy użytkownik nie istnieje w rankingu
+        setUserPoints(null);
+      }
+      // Ustawienie rankingu użytkownika (dodajemy 1, bo indeksowanie zaczyna się od 0)
+      setUserRank(userIndex !== -1 ? userIndex + 1 : null);
+    }
+  }, [leaderboard, completedQuizzes, currentUser]);
 
   const getClassForScore = (score) => {
     if (score >= 70) {
@@ -93,8 +142,10 @@ const Profile = () => {
 
   const totalQuizzesTaken = completedQuizzes.length;
   const averageScore =
-    completedQuizzes.reduce((acc, quiz) => acc + quiz.score, 0) /
-      totalQuizzesTaken || 0;
+    totalQuizzesTaken > 0
+      ? completedQuizzes.reduce((acc, quiz) => acc + quiz.score, 0) /
+        totalQuizzesTaken
+      : 0;
 
   return (
     <Animation>
@@ -114,11 +165,17 @@ const Profile = () => {
             <div className="flex gap-2">
               <span className="text-sm font-semibold rounded-xl bg-black/5 px-3 py-2">
                 Points
-                <span className=" text-indigo-400 ml-1">1000</span>
+                <span className=" text-indigo-400 ml-1">
+                  {userPoints !== null ? userPoints : "-"}{" "}
+                  {/* Wyświetlamy punkty lub "-" jeśli nie ma danych */}
+                </span>
               </span>
               <span className="text-sm font-semibold rounded-xl bg-black/5 px-3 py-2">
                 Rank
-                <span className=" text-indigo-400 ml-1">11</span>
+                <span className=" text-indigo-400 ml-1">
+                  {userRank || "-"}{" "}
+                  {/* Wyświetlamy userRank lub "-" jeśli nie ma danych */}
+                </span>
               </span>
             </div>
           </div>
@@ -153,10 +210,10 @@ const Profile = () => {
                   Badges
                 </Tab>
                 <Tab
-                  key="achives"
+                  key="archives"
                   className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
                 >
-                  Achives
+                  Archives
                 </Tab>
               </TabList>
               <TabPanels>
@@ -170,7 +227,7 @@ const Profile = () => {
                     </div>
                     <div>
                       <h4 className="text-2xl font-bold text-indigo-500">
-                        {averageScore.toFixed(0)}%
+                        {averageScore.toFixed(1)}%
                       </h4>
                       <p className="text-sm">Average Score</p>
                     </div>
@@ -189,7 +246,7 @@ const Profile = () => {
                     <li>3 shares</li>
                   </ul>
                 </TabPanel>
-                <TabPanel key="achives" className="p-3">
+                <TabPanel key="archives" className="p-3">
                   <ul className="flex gap-2" aria-hidden="true">
                     <li>20.07.2023</li>
                     <li>32 comments</li>
@@ -211,7 +268,7 @@ const Profile = () => {
           </div>
 
           {completedQuizzes.length === 0 ? (
-            <p>No quizzes available</p>
+            <p>No quizzes completed</p>
           ) : (
             <ul className="grid grid-cols-4 gap-2">
               {completedQuizzes.slice(0, 3).map((quizResult) => (
@@ -228,10 +285,11 @@ const Profile = () => {
                       </div>
                       <div className="text-left">
                         <h3 className="text-md font-semibold leading-6">
-                          {quizResult.quizId.title}
+                          {quizResult.quizId?.title || "Unknown Title"}
                         </h3>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {quizResult.quizId.categoryId.name}
+                          {quizResult.quizId?.categoryId?.name ||
+                            "Unknown Category"}
                         </p>
                       </div>
                     </div>
@@ -241,7 +299,9 @@ const Profile = () => {
                         quizResult.score
                       )}`}
                     >
-                      <span className="text-xs">{quizResult.score}%</span>
+                      <span className="text-xs">
+                        {quizResult.score.toFixed(1)}%
+                      </span>
                     </div>
                   </li>
                 </div>
@@ -250,6 +310,7 @@ const Profile = () => {
           )}
         </div>
 
+        {/* My Quizzes */}
         <div className="col-span-4 mt-4 text-center">
           <div className="mb-2 flex items-center justify-between">
             <h3 className="font-bold text-md text-gray-600 dark:text-gray-300">
@@ -279,7 +340,7 @@ const Profile = () => {
                             {quizUser.title}
                           </h3>
                           <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {quizUser.categoryId.name}
+                            {quizUser.categoryId?.name || "Unknown Category"}
                           </p>
                         </div>
                       </div>
