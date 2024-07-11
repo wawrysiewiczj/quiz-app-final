@@ -53,7 +53,7 @@ const QuizList = () => {
             <Link
               key={category._id}
               to={`/category/${category.slug}`}
-              className="animate duration-300 col-span-2 sm:grid-col-4 bg-black/5 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5"
+              className="col-span-2 sm:grid-col-4 bg-black/5 dark:bg-white/5 rounded-xl shadow-sm px-3.5 pt-3.5 pb-3.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
               <li className="flex flex-col h-full justify-between">
                 <div className="flex flex-col justify-between h-full">

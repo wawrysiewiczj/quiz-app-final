@@ -11,7 +11,7 @@ const Notifications = () => {
   return (
     <Drawer.Root>
       <Drawer.Trigger asChild>
-        <button className="animate duration-300 w-auto flex justify-center items-center gap-x-1 rounded-xl px-3 py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 relative">
+        <button className="w-auto flex justify-center items-center gap-x-1 rounded-xl px-3 py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 relative">
           <BellIcon className="size-6 text-gray-800 dark:text-gray-200" />
           {unreadCount > 0 && (
             <span className="relative">
@@ -35,7 +35,7 @@ const Notifications = () => {
                 {notifications.map((notification) => (
                   <li
                     key={notification.id}
-                    className="p-4 rounded-xl shadow-sm bg-gray-200 dark:bg-gray-800 text-gray-800"
+                    className="p-4 rounded-xl shadow-sm bg-black/5 dark:bg-white/5"
                   >
                     <span>{notification.content}</span>
                   </li>

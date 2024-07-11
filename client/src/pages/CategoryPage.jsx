@@ -88,7 +88,7 @@ const CategoryPage = () => {
             <Link
               key={quiz._id}
               to={`/quiz/${quiz.slug}`}
-              className="animate duration-300 col-span-4 bg-black/5 rounded-xl shadow-sm px-3.5 py-2.5"
+              className="col-span-4 bg-black/5 dark:bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
               <li className="flex justify-between items-center">
                 <div className="flex items-center gap-2">

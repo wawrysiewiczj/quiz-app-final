@@ -15,6 +15,7 @@ const QuizPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quizStarted, setQuizStarted] = useState(false);
   const [result, setResult] = useState(null);
+  const [answered, setAnswered] = useState(false);
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -48,13 +49,16 @@ const QuizPage = () => {
   };
 
   const handleAnswerSelect = (selectedValue) => {
+    if (answered) return;
     const newSelectedAnswers = [...selectedAnswers];
     newSelectedAnswers[currentQuestionIndex] = selectedValue;
     setSelectedAnswers(newSelectedAnswers);
+    setAnswered(true);
   };
 
   const goToNextQuestion = () => {
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+    setAnswered(false);
   };
 
   const handleSubmit = async () => {
@@ -205,13 +209,21 @@ const QuizPage = () => {
               <Radio
                 key={aIndex}
                 value={aIndex}
-                className="group relative flex cursor-pointer rounded-lg bg-black/10 py-4 px-5 shadow-md transition focus:outline-none "
+                className={`group relative flex cursor-pointer rounded-lg bg-black/5 dark:bg-white/5 py-4 px-5 shadow-md transition focus:outline-indigo-500`}
               >
                 {({ checked }) => (
                   <div className="flex w-full items-center justify-between">
                     <p className="text-lg font-semibold">{answer.content}</p>
                     {checked && (
-                      <CheckCircleIcon className="size-7 opacity-100 text-indigo-500" />
+                      <CheckCircleIcon
+                        className={`h-6 w-6 ${
+                          answered
+                            ? aIndex === currentQuestion.correctAnswerIndex
+                              ? "text-green-500"
+                              : "text-red-500"
+                            : "text-indigo-500"
+                        }`}
+                      />
                     )}
                   </div>
                 )}

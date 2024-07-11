@@ -29,7 +29,7 @@ const ViewAllCreatedQuizzes = ({ userQuizzes }) => {
                       <Link
                         to={`/quiz/${userQuizzes.slug}`}
                         key={quizUser._id}
-                        className="animate duration-300 col-span-4 bg-black/5 rounded-xl shadow-sm px-3.5 py-2.5"
+                        className="animate duration-300 col-span-4 bg-black/5 dark:bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
                       >
                         <li className="flex justify-between items-center">
                           <div className="flex items-center gap-2">

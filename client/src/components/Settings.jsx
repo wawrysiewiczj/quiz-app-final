@@ -58,7 +58,7 @@ const Settings = () => {
   return (
     <Drawer.Root>
       <Drawer.Trigger asChild>
-        <button className="rounded-full animate duration-200 w-full flex justify-center items-center gap-x-1 p-2 text-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+        <button className="rounded-xl w-full flex justify-center items-center gap-x-1 p-2 text-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
           <Cog8ToothIcon className="size-6 text-gray-800 dark:text-gray-200" />
         </button>
       </Drawer.Trigger>
@@ -82,7 +82,7 @@ const Settings = () => {
                     <Switch
                       checked={theme === "dark"}
                       onChange={handleThemeToggle}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -95,7 +95,7 @@ const Settings = () => {
                       disabled
                       checked={enabled2}
                       onChange={setEnabled2}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -106,7 +106,7 @@ const Settings = () => {
                     </span>
                     <select
                       disabled
-                      className="bg-gray-100 text-gray-700 p-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="bg-gray-100 text-gray-700 p-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
                       <option>English</option>
                       <option>Spanish</option>
@@ -129,7 +129,7 @@ const Settings = () => {
                       disabled
                       checked={enabled3}
                       onChange={setEnabled3}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                     </Switch>
@@ -142,7 +142,7 @@ const Settings = () => {
                       disabled
                       checked={enabled4}
                       onChange={setEnabled4}
-                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500"
+                      className="group inline-flex h-6 w-11 items-center rounded-full bg-black/10 transition data-[checked]:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
                       <span className="animate duration-200 size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                     </Switch>

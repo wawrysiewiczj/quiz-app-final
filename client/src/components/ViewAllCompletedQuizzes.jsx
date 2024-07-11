@@ -29,7 +29,9 @@ const ViewAllCompletedQuizzes = ({ completedQuizzes }) => {
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
       <Drawer.Trigger asChild>
-        <button className="font-bold text-sm text-indigo-500">View all</button>
+        <button className="font-bold text-sm text-indigo-500 rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+          View all
+        </button>
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
@@ -49,7 +51,7 @@ const ViewAllCompletedQuizzes = ({ completedQuizzes }) => {
                       <Link
                         to={`/quiz/${quizResult.quizId.slug}`}
                         key={quizResult._id}
-                        className="animate duration-300 col-span-4 bg-black/5 rounded-xl shadow-sm px-3.5 py-2.5"
+                        className="col-span-4 bg-black/5 dark:bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                       >
                         <li className="flex justify-between items-center">
                           <div className="mb-1 flex space-y-2 items-center gap-3 overflow-hidden">

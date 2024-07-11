@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Notifications from "./Notifications";
 
 const headerIconClassName =
-  "animate duration-300 w-auto flex justify-center items-center gap-x-1 rounded-xl px-3 py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500";
+  "w-auto flex justify-center items-center gap-x-1 rounded-xl px-3 py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);

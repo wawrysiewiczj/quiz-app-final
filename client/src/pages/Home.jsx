@@ -41,8 +41,8 @@ const Home = () => {
                   required
                   placeholder="Search"
                   className={clsx(
-                    "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                    "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
                   )}
                 />
                 <MagnifyingGlassIcon

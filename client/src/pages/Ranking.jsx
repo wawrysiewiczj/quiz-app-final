@@ -110,20 +110,20 @@ const Ranking = () => {
 
   return (
     <Animation>
-      <div className="col-span-4 flex flex-col gap-2">
+      <div className="col-span-4 flex flex-col gap-">
         <h2 className="text-2xl font-semibold mb-4">Leaderboard</h2>
         <div className="w-full max-w-md">
-          <TabGroup className="rounded-xl bg-black/5">
-            <TabList className="rounded-xl flex w-full justify-between gap-4 p-1">
+          <TabGroup className="rounded-xl bg-black/5 dark:bg-white/5 ">
+            <TabList className="rounded-xl flex w-full justify-between gap-2 p-1 ">
               <Tab
                 key="weekly"
-                className="rounded-lg w-full py-1 px-3 text-sm font-semibold focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                className="rounded-lg w-full py-1 px-3 text-sm font-semibold focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[selected]:bg-black/15 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
               >
                 Weekly
               </Tab>
               <Tab
                 key="alltime"
-                className="rounded-lg w-full py-1 px-3 text-sm font-semibold focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                className="rounded-lg w-full py-1 px-3 text-sm font-semibold focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[selected]:bg-black/15 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
               >
                 All-time
               </Tab>
@@ -133,7 +133,7 @@ const Ranking = () => {
                 <div className="leaderboard">
                   {weeklyLeaderboard.length >= 3 &&
                     renderPodium(weeklyLeaderboard)}
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-4 gap-2 bg-indigo-600">
                     {renderLeaderboardEntries(weeklyLeaderboard)}
                   </div>
                 </div>

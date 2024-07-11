@@ -160,8 +160,8 @@ const AddQuiz = () => {
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   className={clsx(
-                    "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                    "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
                   )}
                 />
               </Field>
@@ -177,8 +177,8 @@ const AddQuiz = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   className={clsx(
-                    "resize-none block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                    "resize-none block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
                   )}
                   rows={4}
                 />
@@ -197,47 +197,36 @@ const AddQuiz = () => {
                   <div className="relative">
                     <ComboboxInput
                       className={clsx(
-                        "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                        "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                        "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                        "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
                       )}
                       value={selectedCategory ? selectedCategory.name : ""}
                       onChange={(event) => setQuery(event.target.value)}
                       placeholder="Select a category"
                     />
                     <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
-                      <ChevronDownIcon className="size-4 fill-white/60 group-data-[hover]:fill-white" />
+                      <ChevronDownIcon className="size-4 fill-black/50 dark:fill-white/50 group-data-[hover]:fill-white" />
                     </ComboboxButton>
                   </div>
 
                   <ComboboxOptions
                     className={clsx(
-                      "mt-1 w-[var(--input-width)] max-h-52 rounded-xl border border-white/5 bg-white/5 p-1 [--anchor-gap:var(--spacing-1)] empty:invisible",
-                      "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0 overflow-y-scroll"
+                      "mt-1 w-[var(--input-width)] max-h-52 rounded-xl border border-white/5 bg-black/5 dark:bg-white/5 p-1 [--anchor-gap:var(--spacing-1)] empty:invisible",
+                      "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0 overflow-y-scroll data-[focus]:outline-indigo-500"
                     )}
                   >
                     {filteredCategories.map((category) => (
                       <ComboboxOption
                         key={category._id}
                         value={category}
-                        className={({ active }) =>
-                          clsx(
-                            active
-                              ? "bg-blue-600 text-white"
-                              : "text-gray-900 dark:text-gray-100",
-                            "group flex cursor-default items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-white/10"
-                          )
-                        }
+                        className={clsx(
+                          "group flex cursor-default items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-black/5 data-[focus]:dark:bg-white/5"
+                        )}
                       >
                         {({ selected }) => (
                           <>
-                            <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" />
-                            <span
-                              className={
-                                selected ? "font-semibold" : "font-normal"
-                              }
-                            >
-                              {category.name}
-                            </span>
+                            <CheckIcon className="invisible size-4 fill-black dark:fill-white group-data-[selected]:visible" />
+                            <span>{category.name}</span>
                           </>
                         )}
                       </ComboboxOption>
@@ -251,7 +240,7 @@ const AddQuiz = () => {
                 <button
                   type="button"
                   onClick={() => setCurrentStep(2)} // Move to the first question step
-                  className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                  className="w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
                   Start creating
                 </button>
@@ -279,8 +268,8 @@ const AddQuiz = () => {
                   placeholder={`Enter you question #${currentStep - 1}`}
                   required
                   className={clsx(
-                    "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                    "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
                   )}
                 />
               </Field>
@@ -306,8 +295,8 @@ const AddQuiz = () => {
                           placeholder={`Enter answer #${answerIndex + 1}`}
                           required
                           className={clsx(
-                            "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                            "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
                           )}
                         />
                       </div>
@@ -337,10 +326,10 @@ const AddQuiz = () => {
                       )
                     }
                     className={clsx(
-                      "appearance-none block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                      "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
+                      "appearance-none block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400 ",
+                      "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500 data-[focus]:bg-black/5 data-[focus]:dark:bg-white/5",
                       // Make the text of each option black on Windows
-                      "*:text-black"
+                      "*:text-black *:bg-black/5"
                     )}
                   >
                     <option value="">Select correct answer</option>
@@ -364,12 +353,12 @@ const AddQuiz = () => {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="animate duration-200 w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                  className="w-full flex justify-center items-center gap-x-1 rounded-xl border border-indigo-500 px-3.5 py-2.5 text-md font-semibold text-indigo-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
                   Add Question
                 </button>
                 <button
-                  className="animate duration-300 w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                  className="w-full flex justify-center items-center gap-x-1 rounded-xl bg-indigo-500 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                   type="submit"
                 >
                   Save Quiz

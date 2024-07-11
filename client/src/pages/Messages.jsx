@@ -4,6 +4,7 @@ import SkeletonMessage from "../components/SkeletonMessage";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import { Field, Input } from "@headlessui/react";
 
 const Messages = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -141,23 +142,22 @@ const Messages = () => {
             )}
           </div>
           <div className="flex px-4 w-full left-0 fixed bottom-16">
-            <form
-              onSubmit={handleSubmit}
-              className="max-w-3xl mx-auto w-full flex gap-2"
-            >
-              <input
-                type="text"
-                className={clsx(
-                  "block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
-                  "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
-                )}
-                placeholder="Aa"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-              />
-              <button className="flex justify-center items-center bg-violet-600 text-white px-3.5 py-2.5 rounded-xl shadow hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <PaperAirplaneIcon className="w-5 h-5 inline" />
-              </button>
+            <form onSubmit={handleSubmit} className="w-full">
+              <Field className="max-w-3xl mx-auto w-full flex gap-2">
+                <Input
+                  type="text"
+                  className={clsx(
+                    "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
+                  )}
+                  placeholder="Aa"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                />
+                <button className="flex justify-center items-center bg-violet-600 text-white px-3.5 py-2.5 rounded-xl shadow hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <PaperAirplaneIcon className="w-5 h-5 inline" />
+                </button>
+              </Field>
             </form>
           </div>
         </div>

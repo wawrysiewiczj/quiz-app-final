@@ -8,6 +8,19 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+import {
+  Field,
+  Label,
+  Select,
+  Input,
+  Textarea,
+  ComboboxButton,
+  ComboboxInput,
+  Combobox,
+  ComboboxOptions,
+  ComboboxOption,
+} from "@headlessui/react";
+import clsx from "clsx";
 import { app } from "../firebase";
 import { toast } from "react-toastify";
 
@@ -122,7 +135,7 @@ const EditProfile = () => {
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
       <Drawer.Trigger asChild>
-        <button className="rounded-full animate duration-200 w-full flex justify-center items-center gap-x-1 p-2 text-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+        <button className="rounded-xl w-full flex justify-center items-center gap-x-1 p-2 text-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
           <PencilSquareIcon className="size-6" />
         </button>
       </Drawer.Trigger>
@@ -191,36 +204,46 @@ const EditProfile = () => {
                     </p>
                   </div>
                   <div className="mt-4">
-                    <label
-                      className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
-                      htmlFor="username"
-                    >
-                      Username
-                    </label>
-                    <input
-                      defaultValue={currentUser.username}
-                      type="text"
-                      id="username"
-                      placeholder="Your name"
-                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
-                      onChange={handleChange}
-                    />
+                    <Field>
+                      <Label
+                        className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
+                        htmlFor="username"
+                      >
+                        Username
+                      </Label>
+                      <Input
+                        defaultValue={currentUser.username}
+                        type="text"
+                        id="username"
+                        placeholder="Your name"
+                        className={clsx(
+                          "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                          "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
+                        )}
+                        onChange={handleChange}
+                      />
+                    </Field>
                   </div>
-                  <div className="">
-                    <label
-                      className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
-                      htmlFor="email"
-                    >
-                      E-mail
-                    </label>
-                    <input
-                      defaultValue={currentUser.email}
-                      type="text"
-                      id="email"
-                      placeholder="Email"
-                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
-                      onChange={handleChange}
-                    />
+                  <div className="w-full">
+                    <Field>
+                      <Label
+                        className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
+                        htmlFor="email"
+                      >
+                        E-mail
+                      </Label>
+                      <Input
+                        defaultValue={currentUser.email}
+                        type="text"
+                        id="email"
+                        placeholder="Email"
+                        className={clsx(
+                          "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                          "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
+                        )}
+                        onChange={handleChange}
+                      />
+                    </Field>
                   </div>
 
                   {/* Buttons */}

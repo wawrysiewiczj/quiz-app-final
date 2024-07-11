@@ -121,11 +121,11 @@ const Profile = () => {
 
   const getClassForScore = (score) => {
     if (score >= 70) {
-      return "text-green-400";
+      return "text-green-500";
     } else if (score >= 40) {
-      return "text-yellow-400";
+      return "text-yellow-500";
     } else {
-      return "text-red-400";
+      return "text-red-500";
     }
   };
 
@@ -151,7 +151,7 @@ const Profile = () => {
     <Animation>
       <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
         {/* Profile Info */}
-        <div className="col-span-4 rounded-xl p-3 bg-opacity-0 flex flex-col gap-2 bg-black/5">
+        <div className="col-span-4 rounded-xl p-3 bg-opacity-0 flex flex-col gap-2 bg-black/5 dark:bg-white/5">
           <div className="flex flex-col gap-2 items-center justify-center mt-4 ">
             <div className="p-1 bg-indigo-500 rounded-full relative">
               <img
@@ -163,13 +163,13 @@ const Profile = () => {
             </div>
             <h3 className="text-2xl font-semibold">@{currentUser?.username}</h3>
             <div className="flex gap-2">
-              <span className="text-sm font-semibold rounded-xl bg-black/5 px-3 py-2">
+              <span className="text-sm font-semibold rounded-xl bg-black/5 dark:bg-white/5 px-3 py-2">
                 Points
                 <span className=" text-indigo-400 ml-1">
                   {userPoints !== null ? userPoints : "-"}
                 </span>
               </span>
-              <span className="text-sm font-semibold rounded-xl bg-black/5 px-3 py-2">
+              <span className="text-sm font-semibold rounded-xl bg-black/5 dark:bg-white/5 px-3 py-2">
                 Rank
                 <span className=" text-indigo-400 ml-1">{userRank || "-"}</span>
               </span>
@@ -191,29 +191,29 @@ const Profile = () => {
         {/* Quiz Statistics */}
         <div className="col-span-4 flex flex-col gap-2">
           <div className="w-full max-w-md">
-            <TabGroup className="rounded-xl bg-black/5">
-              <TabList className="rounded-xl flex w-full justify-between gap-4 p-1">
+            <TabGroup className="rounded-xl bg-black/5 dark:bg-white/5">
+              <TabList className="rounded-xl flex w-full justify-between gap-4 p-1.5">
                 <Tab
                   key="stats"
-                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[selected]:bg-black/5 data-[selected]:dark:bg-white/5 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
                 >
                   Stats
                 </Tab>
                 <Tab
                   key="badges"
-                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[selected]:bg-black/5 data-[selected]:dark:bg-white/5 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
                 >
                   Badges
                 </Tab>
                 <Tab
                   key="archives"
-                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
+                  className="rounded-lg w-full py-1 px-3 text-sm/6 font-semibold  focus:outline-none text-gray-400 dark:text-gray-400 data-[selected]:text-gray-900 data-[selected]:dark:text-gray-100 data-[selected]:bg-black/5 data-[selected]:dark:bg-white/5 data-[hover]:bg-black/5 data-[selected]:data-[hover]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white"
                 >
                   Archives
                 </Tab>
               </TabList>
               <TabPanels>
-                <TabPanel key="stats" className="pb-3">
+                <TabPanel key="stats" className="py-3">
                   <div className="grid grid-cols-3 gap-2 text-center">
                     <div>
                       <h4 className="text-2xl font-bold text-indigo-500">
@@ -274,7 +274,7 @@ const Profile = () => {
               {completedQuizzes.slice(0, 3).map((quizResult) => (
                 <div
                   key={quizResult._id}
-                  className="animate duration-300 col-span-4 bg-black/5 rounded-xl shadow-sm px-3.5 py-2.5"
+                  className="animate duration-300 col-span-4 bg-black/5 dark:bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
                 >
                   <li className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -330,7 +330,7 @@ const Profile = () => {
                 {userQuizzes.slice(0, 3).map((quizUser) => (
                   <div
                     key={quizUser._id}
-                    className="animate duration-300 col-span-4 bg-black/5 rounded-xl shadow-sm px-3.5 py-2.5"
+                    className="animate duration-300 col-span-4 bg-black/5 dark:bg-white/5 rounded-xl shadow-sm px-3.5 py-2.5"
                   >
                     <li className="flex justify-between items-center">
                       <div className="flex items-center gap-2">

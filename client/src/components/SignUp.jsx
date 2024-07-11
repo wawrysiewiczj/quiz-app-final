@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import OAuth from "./OAuth";
 import { Drawer } from "vaul";
+import { Field, Input, Label } from "@headlessui/react";
+import clsx from "clsx";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({});
@@ -67,91 +69,111 @@ const SignUp = () => {
 
               <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                  <div className="form_control">
-                    <label
-                      className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
-                      htmlFor="username"
-                    >
-                      Username
-                    </label>
-                    <input
-                      type="text"
-                      id="username"
-                      name="username"
-                      required
-                      placeholder="johndoe"
-                      aria-describedby="username"
-                      aria-invalid="false"
-                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
-                      onChange={handleChange}
-                    />
-                    <div id="username" className="sr-only">
-                      Please enter a valid username. It must contain at least 6
-                      characters.
-                    </div>
+                  <div className="w-full">
+                    <Field>
+                      <Label
+                        className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
+                        htmlFor="username"
+                      >
+                        Username
+                      </Label>
+                      <Input
+                        type="text"
+                        id="username"
+                        name="username"
+                        required
+                        placeholder="johndoe"
+                        aria-describedby="username"
+                        aria-invalid="false"
+                        className={clsx(
+                          "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                          "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
+                        )}
+                        onChange={handleChange}
+                      />
+                      <div id="username" className="sr-only">
+                        Please enter a valid username. It must contain at least
+                        6 characters.
+                      </div>
+                    </Field>
                   </div>
-                  <div className="form_control">
-                    <label
-                      className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
-                      htmlFor="email"
-                    >
-                      E-mail
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      placeholder="johndoe@example.com"
-                      aria-describedby="email"
-                      aria-invalid="false"
-                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
-                      onChange={handleChange}
-                    />
+                  <div className="w-full">
+                    <Field>
+                      <Label
+                        className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
+                        htmlFor="email"
+                      >
+                        E-mail
+                      </Label>
+                      <Input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        placeholder="johndoe@example.com"
+                        aria-describedby="email"
+                        aria-invalid="false"
+                        className={clsx(
+                          "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                          "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
+                        )}
+                        onChange={handleChange}
+                      />
+                    </Field>
                   </div>
-                  <div className="form_control">
-                    <label
-                      className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
-                      htmlFor="password"
-                    >
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      required
-                      placeholder="********"
-                      aria-describedby="password"
-                      aria-invalid="false"
-                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
-                      onChange={handleChange}
-                    />
-                    <div id="password" className="sr-only">
-                      Your password should be more than 6 characters
-                    </div>
+                  <div className="w-full">
+                    <Field>
+                      <Label
+                        className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
+                        htmlFor="password"
+                      >
+                        Password
+                      </Label>
+                      <Input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        placeholder="********"
+                        aria-describedby="password"
+                        aria-invalid="false"
+                        className={clsx(
+                          "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                          "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
+                        )}
+                        onChange={handleChange}
+                      />
+                      <div id="password" className="sr-only">
+                        Your password should be more than 6 characters
+                      </div>
+                    </Field>
                   </div>
-                  <div className="form_control">
-                    <label
-                      className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
-                      htmlFor="passwordConfirmation"
-                    >
-                      Confirm Password
-                    </label>
-                    <input
-                      type="password"
-                      id="passwordConfirmation"
-                      name="passwordConfirmation"
-                      placeholder="********"
-                      aria-describedby="passwordConfirmation"
-                      aria-invalid="false"
-                      required
-                      className="block w-full rounded-lg border-none bg-black/10 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400"
-                      onChange={handleChange}
-                    />
-                    <div id="passwordConfirmation" className="sr-only">
-                      Please confirm your password
-                    </div>
+                  <div className="w-full">
+                    <Field>
+                      <Label
+                        className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-1"
+                        htmlFor="passwordConfirmation"
+                      >
+                        Confirm Password
+                      </Label>
+                      <Input
+                        type="password"
+                        id="passwordConfirmation"
+                        name="passwordConfirmation"
+                        placeholder="********"
+                        aria-describedby="passwordConfirmation"
+                        aria-invalid="false"
+                        required
+                        className={clsx(
+                          "block w-full rounded-lg border-none bg-black/5 dark:bg-white/5 py-2.5 px-3 text-sm/6 placeholder:text-gray-700 dark:placeholder:text-gray-400",
+                          "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-indigo-500"
+                        )}
+                        onChange={handleChange}
+                      />
+                      <div id="passwordConfirmation" className="sr-only">
+                        Please confirm your password
+                      </div>
+                    </Field>
                   </div>
                   <div className="flex flex-col gap-2 mt-4">
                     <button
